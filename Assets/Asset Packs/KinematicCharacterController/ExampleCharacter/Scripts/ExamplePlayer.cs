@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using KinematicCharacterController;
 using KinematicCharacterController.Examples;
+using UnityEngine.InputSystem;
 
 namespace KinematicCharacterController.Examples
 {
@@ -10,6 +11,18 @@ namespace KinematicCharacterController.Examples
     {
         public ExampleCharacterController Character;
         public ExampleCharacterCamera CharacterCamera;
+        public float MouseSensibilityX = 0.2f;
+        public float MouseSensibilityY = 0.2f;
+
+        private bool _jumpBool;
+        private bool _crouchBoolDown;
+        private bool _crouchBoolUp;
+        private bool _runBoolDown;
+        private bool _runBoolUp;
+        private float _scrollInput;
+        private float _mouseLookAxisUp;
+        private float _mouseLookAxisRight;
+        private Vector2 _moveVector;
 
         private const string MouseXInput = "Mouse X";
         private const string MouseYInput = "Mouse Y";
@@ -23,6 +36,7 @@ namespace KinematicCharacterController.Examples
 
             // Tell camera to follow transform
             CharacterCamera.SetFollowTransform(Character.CameraFollowPoint);
+            CharacterCamera.TargetDistance = 0f;
 
             // Ignore the character's collider(s) for camera obstruction checks
             CharacterCamera.IgnoredColliders.Clear();
@@ -31,11 +45,6 @@ namespace KinematicCharacterController.Examples
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-            }
-
             HandleCharacterInput();
         }
 
@@ -51,33 +60,90 @@ namespace KinematicCharacterController.Examples
             HandleCameraInput();
         }
 
+        public void InputMove(InputAction.CallbackContext context)
+        {
+            _moveVector = context.ReadValue<Vector2>();
+        }
+        public void InputLook(InputAction.CallbackContext context)
+        {
+            Vector2 MouseDelta = context.ReadValue<Vector2>();
+            _mouseLookAxisUp = MouseDelta.y * MouseSensibilityY;
+            _mouseLookAxisRight = MouseDelta.x * MouseSensibilityX;
+        }
+        public void InputScroll(InputAction.CallbackContext context)
+        {
+            Vector2 ScrollVector = context.ReadValue<Vector2>();
+            _scrollInput = -ScrollVector.y;
+        }
+        public void InputLeftClick(InputAction.CallbackContext context)
+        {
+
+        }
+        public void InputRightClick(InputAction.CallbackContext context)
+        {
+            // CharacterCamera.TargetDistance = (CharacterCamera.TargetDistance == 0f) ? CharacterCamera.DefaultDistance : 0f;
+        }
+        public void InputJump(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Performed)
+            {
+                _jumpBool = true;
+            }
+            else
+            {
+                _jumpBool = false;
+            }
+        }
+        public void InputCrouch(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Performed)
+            {
+                _crouchBoolDown = true;
+                _crouchBoolUp = false;
+            }
+            else
+            {
+                _crouchBoolDown = !true;
+                _crouchBoolUp = !false;
+            }
+        }
+        public void InputRun(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Performed)
+            {
+                _runBoolDown = true;
+                _runBoolUp = false;
+            }
+            else
+            {
+                _runBoolDown = !true;
+                _runBoolUp = !false;
+            }
+        }
+
+        public void InputInteract(InputAction.CallbackContext context)
+        {
+
+        }
+        public void InputSwitchMaskFilters(InputAction.CallbackContext context)
+        {
+
+        }
+
         private void HandleCameraInput()
         {
             // Create the look input vector for the camera
-            float mouseLookAxisUp = Input.GetAxisRaw(MouseYInput);
-            float mouseLookAxisRight = Input.GetAxisRaw(MouseXInput);
-            Vector3 lookInputVector = new Vector3(mouseLookAxisRight, mouseLookAxisUp, 0f);
+            Vector3 lookInputVector = new Vector3(_mouseLookAxisRight, _mouseLookAxisUp, 0f);
 
             // Prevent moving the camera while the cursor isn't locked
             if (Cursor.lockState != CursorLockMode.Locked)
             {
                 lookInputVector = Vector3.zero;
             }
-
-            // Input for zooming the camera (disabled in WebGL because it can cause problems)
-            float scrollInput = -Input.GetAxis(MouseScrollInput);
-#if UNITY_WEBGL
-        scrollInput = 0f;
-#endif
+            
 
             // Apply inputs to the camera
-            CharacterCamera.UpdateWithInput(Time.deltaTime, scrollInput, lookInputVector);
-
-            // Handle toggling zoom level
-            if (Input.GetMouseButtonDown(1))
-            {
-                CharacterCamera.TargetDistance = (CharacterCamera.TargetDistance == 0f) ? CharacterCamera.DefaultDistance : 0f;
-            }
+            CharacterCamera.UpdateWithInput(Time.deltaTime, _scrollInput, lookInputVector);
         }
 
         private void HandleCharacterInput()
@@ -85,12 +151,14 @@ namespace KinematicCharacterController.Examples
             PlayerCharacterInputs characterInputs = new PlayerCharacterInputs();
 
             // Build the CharacterInputs struct
-            characterInputs.MoveAxisForward = Input.GetAxisRaw(VerticalInput);
-            characterInputs.MoveAxisRight = Input.GetAxisRaw(HorizontalInput);
+            characterInputs.MoveAxisForward = _moveVector.y;
+            characterInputs.MoveAxisRight = _moveVector.x;
             characterInputs.CameraRotation = CharacterCamera.Transform.rotation;
-            characterInputs.JumpDown = Input.GetKeyDown(KeyCode.Space);
-            characterInputs.CrouchDown = Input.GetKeyDown(KeyCode.C);
-            characterInputs.CrouchUp = Input.GetKeyUp(KeyCode.C);
+            characterInputs.JumpDown = _jumpBool;
+            characterInputs.CrouchDown = _crouchBoolDown;
+            characterInputs.CrouchUp = _crouchBoolUp;
+            characterInputs.RunDown = _runBoolDown;
+            characterInputs.RunUp = _runBoolUp;
 
             // Apply inputs to character
             Character.SetInputs(ref characterInputs);

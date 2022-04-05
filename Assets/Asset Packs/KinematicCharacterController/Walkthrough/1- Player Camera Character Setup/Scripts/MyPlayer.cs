@@ -4,6 +4,7 @@ using UnityEngine;
 using KinematicCharacterController;
 using KinematicCharacterController.Examples;
 using System.Linq;
+using UnityEngine.InputSystem;
 
 namespace KinematicCharacterController.Walkthrough.PlayerCameraCharacterSetup
 {
@@ -14,6 +15,9 @@ namespace KinematicCharacterController.Walkthrough.PlayerCameraCharacterSetup
         public MyCharacterController Character;
 
         private Vector3 _lookInputVector = Vector3.zero;
+        private float mouseLookAxisUp;
+        private float mouseLookAxisRight;
+        private float scrollInput;
 
         private void Start()
         {
@@ -28,10 +32,10 @@ namespace KinematicCharacterController.Walkthrough.PlayerCameraCharacterSetup
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-            }
+            // if (Input.GetMouseButtonDown(0))
+            // {
+            //     Cursor.lockState = CursorLockMode.Locked;
+            // }
         }
 
         private void LateUpdate()
@@ -39,11 +43,40 @@ namespace KinematicCharacterController.Walkthrough.PlayerCameraCharacterSetup
             HandleCameraInput();
         }
 
+        public void InputMouseDelta(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                Vector2 mouseInputVector = context.ReadValue<Vector2>();
+                mouseLookAxisUp = mouseInputVector.y;
+                mouseLookAxisRight = mouseInputVector.x;
+            }
+            else if (context.canceled)
+            {
+                mouseLookAxisUp = 0;
+                mouseLookAxisRight = 0;
+            }
+        }
+
+        public void InputMouseScrollWheel(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                Vector2 mouseScroll = context.ReadValue<Vector2>() * 0.05f;
+                scrollInput = -mouseScroll.y;
+                Debug.Log("Mouse Scroll X: " + mouseScroll.x + " Mouse Scroll Y: " + mouseScroll.y);
+            }
+            else if (context.canceled)
+            {
+                scrollInput = 0;
+            }
+        }
+
         private void HandleCameraInput()
         {
             // Create the look input vector for the camera
-            float mouseLookAxisUp = Input.GetAxisRaw("Mouse Y");
-            float mouseLookAxisRight = Input.GetAxisRaw("Mouse X");
+            // float mouseLookAxisUp = Input.GetAxisRaw("Mouse Y");
+            // float mouseLookAxisRight = Input.GetAxisRaw("Mouse X");
             _lookInputVector = new Vector3(mouseLookAxisRight, mouseLookAxisUp, 0f);
 
             // Prevent moving the camera while the cursor isn't locked
@@ -53,7 +86,7 @@ namespace KinematicCharacterController.Walkthrough.PlayerCameraCharacterSetup
             }
 
             // Input for zooming the camera (disabled in WebGL because it can cause problems)
-            float scrollInput = -Input.GetAxis("Mouse ScrollWheel");
+            // scrollInput = -Input.GetAxis("Mouse ScrollWheel");
     #if UNITY_WEBGL
             scrollInput = 0f;
     #endif

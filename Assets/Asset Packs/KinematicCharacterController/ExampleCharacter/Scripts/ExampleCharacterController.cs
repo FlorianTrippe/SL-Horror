@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using KinematicCharacterController;
 using System;
+using UnityEditor.ShaderGraph.Internal;
+using UnityEngine.ProBuilder.MeshOperations;
 
 namespace KinematicCharacterController.Examples
 {
@@ -25,6 +27,8 @@ namespace KinematicCharacterController.Examples
         public bool JumpDown;
         public bool CrouchDown;
         public bool CrouchUp;
+        public bool RunDown;
+        public bool RunUp;
     }
 
     public struct AICharacterInputs
@@ -45,10 +49,20 @@ namespace KinematicCharacterController.Examples
         public KinematicCharacterMotor Motor;
 
         [Header("Stable Movement")]
+        public float MaxStableCrouchSpeed = 5f;
         public float MaxStableMoveSpeed = 10f;
+        public float MaxStableRunSpeed = 20f;
         public float StableMovementSharpness = 15f;
         public float OrientationSharpness = 10f;
         public OrientationMethod OrientationMethod = OrientationMethod.TowardsCamera;
+
+        [Header("Stamina")]
+        public float MaxStamina = 25f;
+        public float StaminaDrainCrouch = 0.5f;
+        public float StaminaDrainRun = 0.5f;
+        public float StaminaDrainJump = 0.5f;
+        public float StaminaRegenerationDelay = 2f;
+        public float StaminaRegenerationAmount = 4f;
 
         [Header("Air Movement")]
         public float MaxAirMoveSpeed = 15f;
@@ -71,6 +85,11 @@ namespace KinematicCharacterController.Examples
         public Transform CameraFollowPoint;
         public float CrouchedCapsuleHeight = 1f;
 
+        [Header("Gas")]
+        public bool TimeBasedFilters = false;
+        public float FilterCapacity = 100f;
+        public float FilterTimeInSeconds = 300f;
+
         public CharacterState CurrentCharacterState { get; private set; }
 
         private Collider[] _probedColliders = new Collider[8];
@@ -80,8 +99,14 @@ namespace KinematicCharacterController.Examples
         private bool _jumpRequested = false;
         private bool _jumpConsumed = false;
         private bool _jumpedThisFrame = false;
+        private bool _usingStamina = false;
+        private bool _filterActive = true;
         private float _timeSinceJumpRequested = Mathf.Infinity;
         private float _timeSinceLastAbleToJump = 0f;
+        private float _moveSpeed;
+        private float _currentStamina;
+        private float _currentStaminaTime = 0;
+        private float _currentFilterTime = 0;
         private Vector3 _internalVelocityAdd = Vector3.zero;
         private bool _shouldBeCrouching = false;
         private bool _isCrouching = false;
@@ -91,11 +116,50 @@ namespace KinematicCharacterController.Examples
 
         private void Awake()
         {
+            _moveSpeed = MaxStableMoveSpeed;
+            _currentStamina = MaxStamina;
+
             // Handle initial state
             TransitionToState(CharacterState.Default);
 
             // Assign the characterController to the motor
             Motor.CharacterController = this;
+        }
+
+        private void Update()
+        {
+            if (TimeBasedFilters)
+            {
+                if (_currentFilterTime >= FilterTimeInSeconds)
+                {
+                    _currentFilterTime = 0;
+                    _filterActive = false;
+                    //TODO: Filter Empty do Stuff
+                }
+                else
+                {
+                    _currentFilterTime += Time.deltaTime;
+                }
+            }
+        }
+
+        public void FilterDrain(float drainAmount)
+        {
+            FilterCapacity -= drainAmount;
+            if (FilterCapacity <= 0)
+            {
+                //TODO: Do Stuff
+            }
+        }
+        public void RefillFilterTime()
+        {
+            _currentFilterTime = 0;
+            _filterActive = true;
+        }
+
+        public void RefillFilterAmount(float fillAmount)
+        {
+            FilterCapacity = fillAmount;
         }
 
         /// <summary>
@@ -175,12 +239,29 @@ namespace KinematicCharacterController.Examples
                         {
                             _timeSinceJumpRequested = 0f;
                             _jumpRequested = true;
+
+                            _currentStamina -= StaminaDrainJump;
+                        }
+
+                        if (inputs.RunDown)
+                        {
+                            _moveSpeed = MaxStableRunSpeed;
+
+                            _usingStamina = true;
+                        }
+                        else if (inputs.RunUp)
+                        {
+                            _moveSpeed = MaxStableMoveSpeed;
+
+                            _usingStamina = false;
                         }
 
                         // Crouching input
                         if (inputs.CrouchDown)
                         {
                             _shouldBeCrouching = true;
+                            _usingStamina = true;
+                            _moveSpeed = MaxStableCrouchSpeed;
 
                             if (!_isCrouching)
                             {
@@ -192,8 +273,29 @@ namespace KinematicCharacterController.Examples
                         else if (inputs.CrouchUp)
                         {
                             _shouldBeCrouching = false;
+
+                            _usingStamina = false;
                         }
 
+                        if (!_usingStamina)
+                        {
+                            if (_currentStaminaTime >= StaminaRegenerationDelay && _currentStamina < MaxStamina)
+                            {
+                                if (_currentStamina >= MaxStamina)
+                                {
+                                    _currentStamina = MaxStamina;
+                                    _currentStaminaTime = 0f;
+                                }
+                                else
+                                {
+                                    _currentStamina += StaminaRegenerationAmount * Time.deltaTime;
+                                }
+                            }
+                            else
+                            {
+                                _currentStaminaTime += Time.deltaTime;
+                            }
+                        }
                         break;
                     }
             }
@@ -297,7 +399,7 @@ namespace KinematicCharacterController.Examples
                             // Calculate target velocity
                             Vector3 inputRight = Vector3.Cross(_moveInputVector, Motor.CharacterUp);
                             Vector3 reorientedInput = Vector3.Cross(effectiveGroundNormal, inputRight).normalized * _moveInputVector.magnitude;
-                            Vector3 targetMovementVelocity = reorientedInput * MaxStableMoveSpeed;
+                            Vector3 targetMovementVelocity = reorientedInput * _moveSpeed;
 
                             // Smooth movement Velocity
                             currentVelocity = Vector3.Lerp(currentVelocity, targetMovementVelocity, 1f - Mathf.Exp(-StableMovementSharpness * deltaTime));
