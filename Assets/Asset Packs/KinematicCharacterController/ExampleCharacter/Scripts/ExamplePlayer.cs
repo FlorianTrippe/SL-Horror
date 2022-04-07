@@ -11,6 +11,7 @@ namespace KinematicCharacterController.Examples
     {
         public ExampleCharacterController Character;
         public ExampleCharacterCamera CharacterCamera;
+        public CableScripts CableScript;
         public float MouseSensibilityX = 0.2f;
         public float MouseSensibilityY = 0.2f;
 
@@ -73,7 +74,6 @@ namespace KinematicCharacterController.Examples
         public void InputScroll(InputAction.CallbackContext context)
         {
             Vector2 ScrollVector = context.ReadValue<Vector2>();
-            _scrollInput = -ScrollVector.y;
         }
         public void InputLeftClick(InputAction.CallbackContext context)
         {
@@ -123,7 +123,16 @@ namespace KinematicCharacterController.Examples
 
         public void InputInteract(InputAction.CallbackContext context)
         {
+            if (context.phase == InputActionPhase.Performed)
+            {
+                Vector3 position = CableScript._cableStartPoint.position;
+                position += CharacterCamera.transform.forward;
 
+                CableScript.UseCable(position);
+            }
+            else
+            {
+            }
         }
         public void InputSwitchMaskFilters(InputAction.CallbackContext context)
         {

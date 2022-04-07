@@ -128,7 +128,11 @@ namespace KinematicCharacterController.Examples
 
         private void Update()
         {
-            if (TimeBasedFilters)
+            if (!_filterActive)
+            {
+                
+            }
+            else if (TimeBasedFilters)
             {
                 if (_currentFilterTime >= FilterTimeInSeconds)
                 {

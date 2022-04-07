@@ -71,7 +71,6 @@ namespace KinematicCharacterController.Walkthrough.FramePerfectRotation
         public void InputMouseScrollWheel(InputAction.CallbackContext context)
         {
             Vector2 ScrollVector = context.ReadValue<Vector2>();
-            _scrollInput = -ScrollVector.y;
             if (context.performed)
             {
             }
@@ -142,9 +141,6 @@ namespace KinematicCharacterController.Walkthrough.FramePerfectRotation
 #if UNITY_WEBGL
         scrollInput = 0f;
 #endif
-
-            // Apply inputs to the camera
-            OrbitCamera.UpdateWithInput(Time.deltaTime, _scrollInput, lookInputVector);
 
             // Handle toggling zoom level
 

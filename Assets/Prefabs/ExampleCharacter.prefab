@@ -29,6 +29,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 255050369325801061}
+  - {fileID: 258001474458037917}
   m_Father: {fileID: 259930301445493295}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -91,12 +92,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 260446264095916501}
   m_LocalRotation: {x: 0.70710677, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.44099998, z: 0.18199922}
-  m_LocalScale: {x: 0.88040376, y: 0.34093377, z: 0.51656276}
+  m_LocalPosition: {x: 0, y: 1.614, z: 0.1819992}
+  m_LocalScale: {x: 0.2500875, y: 0.09684565, z: 0.14673482}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 255050369325801061}
-  m_RootOrder: 0
+  m_Father: {fileID: 258151955550649057}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 90.00001, y: 0, z: 0}
 --- !u!33 &283401136751970383
 MeshFilter:
@@ -225,7 +226,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 0.25
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
@@ -242,11 +243,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Motor: {fileID: 144967662403683561}
+  MaxStableCrouchSpeed: 5
   MaxStableMoveSpeed: 10
   MaxStableRunSpeed: 20
   StableMovementSharpness: 15
   OrientationSharpness: 20
   OrientationMethod: 1
+  MaxStamina: 25
+  StaminaDrainCrouch: 0.5
+  StaminaDrainRun: 0.5
+  StaminaDrainJump: 0.5
+  StaminaRegenerationDelay: 2
+  StaminaRegenerationAmount: 4
   MaxAirMoveSpeed: 10
   AirAccelerationSpeed: 30
   Drag: 0
@@ -264,6 +272,9 @@ MonoBehaviour:
   MeshRoot: {fileID: 259930301445493295}
   CameraFollowPoint: {fileID: 255498944713531829}
   CrouchedCapsuleHeight: 1
+  TimeBasedFilters: 0
+  FilterCapacity: 100
+  FilterTimeInSeconds: 300
 --- !u!114 &144967662403683561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,7 +288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Capsule: {fileID: 180071856275159613}
-  CapsuleRadius: 0.5
+  CapsuleRadius: 0.25
   CapsuleHeight: 2
   CapsuleYOffset: 1
   CapsulePhysicsMaterial: {fileID: 0}
@@ -292,7 +303,7 @@ MonoBehaviour:
   AllowSteppingWithoutStableGrounding: 0
   MinRequiredStepDepth: 0.1
   LedgeAndDenivelationHandling: 1
-  MaxStableDistanceFromLedge: 0.5
+  MaxStableDistanceFromLedge: 0.25
   MaxVelocityForLedgeSnap: 0
   MaxStableDenivelationAngle: 180
   InteractiveRigidbodyHandling: 1
@@ -349,10 +360,9 @@ Transform:
   m_GameObject: {fileID: 261126101119069997}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 258001474458037917}
+  m_Children: []
   m_Father: {fileID: 258151955550649057}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
