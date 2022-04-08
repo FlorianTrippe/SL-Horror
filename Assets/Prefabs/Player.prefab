@@ -162,20 +162,7 @@ MonoBehaviour:
     m_ActionId: fe74e323-fa4a-4b42-b697-045d163c6785
     m_ActionName: PlayerActionMap/Mouse Klick Left[/Mouse/leftButton]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 985834508483493368}
-        m_TargetAssemblyTypeName: KinematicCharacterController.Examples.ExamplePlayer,
-          Assembly-CSharp
-        m_MethodName: InputJump
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 88797fbf-d8d4-4bcb-9bec-bb635f1d9ae9
     m_ActionName: PlayerActionMap/Jump[/Keyboard/space]
   - m_PersistentCalls:
@@ -217,7 +204,7 @@ MonoBehaviour:
       - m_Target: {fileID: 985834508483493368}
         m_TargetAssemblyTypeName: KinematicCharacterController.Examples.ExamplePlayer,
           Assembly-CSharp
-        m_MethodName: InputInteract
+        m_MethodName: InputSwitchMaskFilters
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -227,8 +214,59 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 10bd7c3f-ef13-4441-baed-46ea143599a4
-    m_ActionName: PlayerActionMap/Interact[/Keyboard/f]
+    m_ActionId: 09881fa7-9beb-4ec9-a345-67188a881c9c
+    m_ActionName: PlayerActionMap/SwitchFilter[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 985834508483493368}
+        m_TargetAssemblyTypeName: KinematicCharacterController.Examples.ExamplePlayer,
+          Assembly-CSharp
+        m_MethodName: InputHold
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9f15b743-4d66-486c-9a0d-b4f06672040b
+    m_ActionName: PlayerActionMap/Interact Hold[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 985834508483493368}
+        m_TargetAssemblyTypeName: KinematicCharacterController.Examples.ExamplePlayer,
+          Assembly-CSharp
+        m_MethodName: InputGeiger
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 488c1478-cae5-484c-bacf-e3b538b3d22d
+    m_ActionName: PlayerActionMap/Geiger[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 985834508483493368}
+        m_TargetAssemblyTypeName: KinematicCharacterController.Examples.ExamplePlayer,
+          Assembly-CSharp
+        m_MethodName: InputFlashLight
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: caa86691-443b-443b-9904-d84f919ade16
+    m_ActionName: PlayerActionMap/FlashLight[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerActionMap

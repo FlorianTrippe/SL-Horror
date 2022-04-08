@@ -42,12 +42,21 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Interact Hold",
+                    "type": "Button",
+                    "id": "9f15b743-4d66-486c-9a0d-b4f06672040b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold(duration=0.6,pressPoint=0.5)",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "Mouse Klick Left",
                     "type": "Button",
                     "id": "fe74e323-fa4a-4b42-b697-045d163c6785",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Tap(duration=0.5)",
                     "initialStateCheck": false
                 },
                 {
@@ -78,9 +87,27 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Interact",
+                    "name": "SwitchFilter",
                     "type": "Button",
-                    "id": "10bd7c3f-ef13-4441-baed-46ea143599a4",
+                    "id": "09881fa7-9beb-4ec9-a345-67188a881c9c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Geiger",
+                    "type": "Button",
+                    "id": "488c1478-cae5-484c-bacf-e3b538b3d22d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "FlashLight",
+                    "type": "Button",
+                    "id": "caa86691-443b-443b-9904-d84f919ade16",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -222,12 +249,45 @@
                 },
                 {
                     "name": "",
-                    "id": "cf3358fe-bc9d-4da6-bece-8df98ca7e45b",
-                    "path": "<Keyboard>/f",
+                    "id": "c02ba159-b910-4225-81e9-c913ec52a5a3",
+                    "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
                     "groups": "PlayerControlScheme",
-                    "action": "Interact",
+                    "action": "SwitchFilter",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c74f4d67-54f3-49c6-aa0e-c3df72b11f90",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PlayerControlScheme",
+                    "action": "Geiger",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f52419c7-3304-47cd-b460-016131680554",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PlayerControlScheme",
+                    "action": "FlashLight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "03ec0a6c-09b2-46f0-a1c7-23ece7ee7a9d",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PlayerControlScheme",
+                    "action": "Interact Hold",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

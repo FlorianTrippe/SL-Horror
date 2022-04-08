@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7774734210372420295}
   - component: {fileID: 675061503741869649}
   - component: {fileID: 7551805831893687340}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: life_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 4308133890779914439}
   - component: {fileID: 990385933360104335}
   - component: {fileID: 6923578740107515330}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: glass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4896937664943955678}
-  m_Layer: 0
+  - component: {fileID: 7630919488448389112}
+  - component: {fileID: 6133621730378852544}
+  m_Layer: 3
   m_Name: Prefab_lebenthing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,8 +192,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5241832010473227364}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.6507474, y: 0, z: 0.10814464}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4308133890779914439}
@@ -202,6 +204,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &7630919488448389112
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5241832010473227364}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.2
+  m_Height: 7.35
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6133621730378852544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5241832010473227364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 781e642ed2c8d2c4bafe9c29a9e0ea83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _thisObject: {fileID: 0}
+  type: 0
 --- !u!1 &5722478685552663169
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,7 +243,7 @@ GameObject:
   - component: {fileID: 7415742320167942025}
   - component: {fileID: 7574438265844533206}
   - component: {fileID: 796549132753927658}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: life_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -296,7 +326,7 @@ GameObject:
   - component: {fileID: 5617405960662070704}
   - component: {fileID: 8748213133573804157}
   - component: {fileID: 6511362905050986544}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: life_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -379,7 +409,7 @@ GameObject:
   - component: {fileID: 1921664725028956473}
   - component: {fileID: 2411464954732429562}
   - component: {fileID: 1290581740384527306}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Main
   m_TagString: Untagged
   m_Icon: {fileID: 0}

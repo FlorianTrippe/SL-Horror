@@ -25,11 +25,7 @@ namespace KinematicCharacterController.Examples
         private float _mouseLookAxisRight;
         private Vector2 _moveVector;
 
-        private const string MouseXInput = "Mouse X";
-        private const string MouseYInput = "Mouse Y";
-        private const string MouseScrollInput = "Mouse ScrollWheel";
-        private const string HorizontalInput = "Horizontal";
-        private const string VerticalInput = "Vertical";
+        public bool ReadyToCharge = false;
 
         private void Start()
         {
@@ -73,25 +69,48 @@ namespace KinematicCharacterController.Examples
         }
         public void InputScroll(InputAction.CallbackContext context)
         {
-            Vector2 ScrollVector = context.ReadValue<Vector2>();
         }
         public void InputLeftClick(InputAction.CallbackContext context)
         {
-
-        }
-        public void InputRightClick(InputAction.CallbackContext context)
-        {
-            // CharacterCamera.TargetDistance = (CharacterCamera.TargetDistance == 0f) ? CharacterCamera.DefaultDistance : 0f;
-        }
-        public void InputJump(InputAction.CallbackContext context)
-        {
             if (context.phase == InputActionPhase.Performed)
             {
-                _jumpBool = true;
+                if (ReadyToCharge)
+                {
+                    CableScript.Charge();
+                }
+                else
+                {
+                    Debug.Log("Click");
+                    CableScript.Interact();
+                }
             }
             else
             {
-                _jumpBool = false;
+            }
+        }
+        public void InputRightClick(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Performed)
+            {
+                Debug.Log("Click Right");
+                CableScript.EquipCharger();
+                ReadyToCharge = true;
+            }
+            else
+            {
+                CableScript.EquipLastItem();
+                ReadyToCharge = false;
+            }
+        }
+        public void InputHold(InputAction.CallbackContext context)
+        {
+
+            if (context.phase == InputActionPhase.Performed)
+            {
+                Debug.Log("Hold Click");
+            }
+            else
+            {
             }
         }
         public void InputCrouch(InputAction.CallbackContext context)
@@ -120,23 +139,24 @@ namespace KinematicCharacterController.Examples
                 _runBoolUp = !false;
             }
         }
-
-        public void InputInteract(InputAction.CallbackContext context)
+        public void InputGeiger(InputAction.CallbackContext context)
+        {
+        }
+        public void InputFlashLight(InputAction.CallbackContext context)
+        {
+        }
+        public void InputCharger(InputAction.CallbackContext context)
+        {
+        }
+        public void InputSwitchMaskFilters(InputAction.CallbackContext context)
         {
             if (context.phase == InputActionPhase.Performed)
             {
-                Vector3 position = CableScript._cableStartPoint.position;
-                position += CharacterCamera.transform.forward;
-
-                CableScript.UseCable(position);
+                CableScript.DropKey();
             }
             else
             {
             }
-        }
-        public void InputSwitchMaskFilters(InputAction.CallbackContext context)
-        {
-
         }
 
         private void HandleCameraInput()

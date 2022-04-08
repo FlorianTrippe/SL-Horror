@@ -64,12 +64,21 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Interact Hold"",
+                    ""type"": ""Button"",
+                    ""id"": ""9f15b743-4d66-486c-9a0d-b4f06672040b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold(duration=0.6,pressPoint=0.5)"",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""Mouse Klick Left"",
                     ""type"": ""Button"",
                     ""id"": ""fe74e323-fa4a-4b42-b697-045d163c6785"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Tap(duration=0.5)"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -100,9 +109,27 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Interact"",
+                    ""name"": ""SwitchFilter"",
                     ""type"": ""Button"",
-                    ""id"": ""10bd7c3f-ef13-4441-baed-46ea143599a4"",
+                    ""id"": ""09881fa7-9beb-4ec9-a345-67188a881c9c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Geiger"",
+                    ""type"": ""Button"",
+                    ""id"": ""488c1478-cae5-484c-bacf-e3b538b3d22d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FlashLight"",
+                    ""type"": ""Button"",
+                    ""id"": ""caa86691-443b-443b-9904-d84f919ade16"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -244,12 +271,45 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""cf3358fe-bc9d-4da6-bece-8df98ca7e45b"",
-                    ""path"": ""<Keyboard>/f"",
+                    ""id"": ""c02ba159-b910-4225-81e9-c913ec52a5a3"",
+                    ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""PlayerControlScheme"",
-                    ""action"": ""Interact"",
+                    ""action"": ""SwitchFilter"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c74f4d67-54f3-49c6-aa0e-c3df72b11f90"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PlayerControlScheme"",
+                    ""action"": ""Geiger"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f52419c7-3304-47cd-b460-016131680554"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PlayerControlScheme"",
+                    ""action"": ""FlashLight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""03ec0a6c-09b2-46f0-a1c7-23ece7ee7a9d"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PlayerControlScheme"",
+                    ""action"": ""Interact Hold"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -291,11 +351,14 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_PlayerActionMap_MouseScrollWheel = m_PlayerActionMap.FindAction("Mouse ScrollWheel", throwIfNotFound: true);
         m_PlayerActionMap_Move = m_PlayerActionMap.FindAction("Move", throwIfNotFound: true);
         m_PlayerActionMap_MouseKlickRight = m_PlayerActionMap.FindAction("Mouse Klick Right", throwIfNotFound: true);
+        m_PlayerActionMap_InteractHold = m_PlayerActionMap.FindAction("Interact Hold", throwIfNotFound: true);
         m_PlayerActionMap_MouseKlickLeft = m_PlayerActionMap.FindAction("Mouse Klick Left", throwIfNotFound: true);
         m_PlayerActionMap_Jump = m_PlayerActionMap.FindAction("Jump", throwIfNotFound: true);
         m_PlayerActionMap_Crouch = m_PlayerActionMap.FindAction("Crouch", throwIfNotFound: true);
         m_PlayerActionMap_Run = m_PlayerActionMap.FindAction("Run", throwIfNotFound: true);
-        m_PlayerActionMap_Interact = m_PlayerActionMap.FindAction("Interact", throwIfNotFound: true);
+        m_PlayerActionMap_SwitchFilter = m_PlayerActionMap.FindAction("SwitchFilter", throwIfNotFound: true);
+        m_PlayerActionMap_Geiger = m_PlayerActionMap.FindAction("Geiger", throwIfNotFound: true);
+        m_PlayerActionMap_FlashLight = m_PlayerActionMap.FindAction("FlashLight", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -359,11 +422,14 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActionMap_MouseScrollWheel;
     private readonly InputAction m_PlayerActionMap_Move;
     private readonly InputAction m_PlayerActionMap_MouseKlickRight;
+    private readonly InputAction m_PlayerActionMap_InteractHold;
     private readonly InputAction m_PlayerActionMap_MouseKlickLeft;
     private readonly InputAction m_PlayerActionMap_Jump;
     private readonly InputAction m_PlayerActionMap_Crouch;
     private readonly InputAction m_PlayerActionMap_Run;
-    private readonly InputAction m_PlayerActionMap_Interact;
+    private readonly InputAction m_PlayerActionMap_SwitchFilter;
+    private readonly InputAction m_PlayerActionMap_Geiger;
+    private readonly InputAction m_PlayerActionMap_FlashLight;
     public struct PlayerActionMapActions
     {
         private @PlayerInput m_Wrapper;
@@ -372,11 +438,14 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @MouseScrollWheel => m_Wrapper.m_PlayerActionMap_MouseScrollWheel;
         public InputAction @Move => m_Wrapper.m_PlayerActionMap_Move;
         public InputAction @MouseKlickRight => m_Wrapper.m_PlayerActionMap_MouseKlickRight;
+        public InputAction @InteractHold => m_Wrapper.m_PlayerActionMap_InteractHold;
         public InputAction @MouseKlickLeft => m_Wrapper.m_PlayerActionMap_MouseKlickLeft;
         public InputAction @Jump => m_Wrapper.m_PlayerActionMap_Jump;
         public InputAction @Crouch => m_Wrapper.m_PlayerActionMap_Crouch;
         public InputAction @Run => m_Wrapper.m_PlayerActionMap_Run;
-        public InputAction @Interact => m_Wrapper.m_PlayerActionMap_Interact;
+        public InputAction @SwitchFilter => m_Wrapper.m_PlayerActionMap_SwitchFilter;
+        public InputAction @Geiger => m_Wrapper.m_PlayerActionMap_Geiger;
+        public InputAction @FlashLight => m_Wrapper.m_PlayerActionMap_FlashLight;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -398,6 +467,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @MouseKlickRight.started -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnMouseKlickRight;
                 @MouseKlickRight.performed -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnMouseKlickRight;
                 @MouseKlickRight.canceled -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnMouseKlickRight;
+                @InteractHold.started -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnInteractHold;
+                @InteractHold.performed -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnInteractHold;
+                @InteractHold.canceled -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnInteractHold;
                 @MouseKlickLeft.started -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnMouseKlickLeft;
                 @MouseKlickLeft.performed -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnMouseKlickLeft;
                 @MouseKlickLeft.canceled -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnMouseKlickLeft;
@@ -410,9 +482,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Run.started -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnRun;
                 @Run.performed -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnRun;
                 @Run.canceled -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnRun;
-                @Interact.started -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnInteract;
-                @Interact.performed -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnInteract;
-                @Interact.canceled -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnInteract;
+                @SwitchFilter.started -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnSwitchFilter;
+                @SwitchFilter.performed -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnSwitchFilter;
+                @SwitchFilter.canceled -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnSwitchFilter;
+                @Geiger.started -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnGeiger;
+                @Geiger.performed -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnGeiger;
+                @Geiger.canceled -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnGeiger;
+                @FlashLight.started -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnFlashLight;
+                @FlashLight.performed -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnFlashLight;
+                @FlashLight.canceled -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnFlashLight;
             }
             m_Wrapper.m_PlayerActionMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -429,6 +507,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @MouseKlickRight.started += instance.OnMouseKlickRight;
                 @MouseKlickRight.performed += instance.OnMouseKlickRight;
                 @MouseKlickRight.canceled += instance.OnMouseKlickRight;
+                @InteractHold.started += instance.OnInteractHold;
+                @InteractHold.performed += instance.OnInteractHold;
+                @InteractHold.canceled += instance.OnInteractHold;
                 @MouseKlickLeft.started += instance.OnMouseKlickLeft;
                 @MouseKlickLeft.performed += instance.OnMouseKlickLeft;
                 @MouseKlickLeft.canceled += instance.OnMouseKlickLeft;
@@ -441,9 +522,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Run.started += instance.OnRun;
                 @Run.performed += instance.OnRun;
                 @Run.canceled += instance.OnRun;
-                @Interact.started += instance.OnInteract;
-                @Interact.performed += instance.OnInteract;
-                @Interact.canceled += instance.OnInteract;
+                @SwitchFilter.started += instance.OnSwitchFilter;
+                @SwitchFilter.performed += instance.OnSwitchFilter;
+                @SwitchFilter.canceled += instance.OnSwitchFilter;
+                @Geiger.started += instance.OnGeiger;
+                @Geiger.performed += instance.OnGeiger;
+                @Geiger.canceled += instance.OnGeiger;
+                @FlashLight.started += instance.OnFlashLight;
+                @FlashLight.performed += instance.OnFlashLight;
+                @FlashLight.canceled += instance.OnFlashLight;
             }
         }
     }
@@ -463,10 +550,13 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnMouseScrollWheel(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnMouseKlickRight(InputAction.CallbackContext context);
+        void OnInteractHold(InputAction.CallbackContext context);
         void OnMouseKlickLeft(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
-        void OnInteract(InputAction.CallbackContext context);
+        void OnSwitchFilter(InputAction.CallbackContext context);
+        void OnGeiger(InputAction.CallbackContext context);
+        void OnFlashLight(InputAction.CallbackContext context);
     }
 }
