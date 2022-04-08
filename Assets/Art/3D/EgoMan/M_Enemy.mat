@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Enemy 2
+  m_Name: M_Enemy
   m_Shader: {fileID: -6465566751694194690, guid: 12dd23432e259c646b5671a81d4e5650,
     type: 3}
   m_ShaderKeywords: 
@@ -34,15 +34,15 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Albedo:
-        m_Texture: {fileID: 2800000, guid: ddce261340af9f64fa3c1d12dc0a7bc6, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7873209eb56d88f40b37b5adcfd06b94, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MatallicSmooth:
-        m_Texture: {fileID: 2800000, guid: 5650511302797bd4ea4f43f8a333ef2e, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5948d29a630173047952b1203157b97e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal:
-        m_Texture: {fileID: 2800000, guid: e84b1fe11c7505e4bb782b4db4547267, type: 3}
+        m_Texture: {fileID: 2800000, guid: 35046ba08897938448706cfd30821140, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_711f1aef17ae49419b1a533270647ffb_Texture_1:
@@ -82,7 +82,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _emissive:
-        m_Texture: {fileID: 2800000, guid: 2b3712c6b5f52924b9a806b5681c32bb, type: 3}
+        m_Texture: {fileID: 2800000, guid: b6f3867215f2f8647a109ff931330ff6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -99,9 +99,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Emissionstrngstdt: 4.5
+    - _Emissionstrngstdt: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _EmissionColor: {r: 0.8773585, g: 0.24018274, b: 0.121395424, a: 0}
+    - _EmissionColor: {r: 0, g: 0.9607843, b: 0.7082501, a: 0}
   m_BuildTextureStacks: []

@@ -99,9 +99,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Emissionstrngstdt: 5.96
+    - _Emissionstrngstdt: 0.75
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _EmissionColor: {r: 0.972549, g: 0.033057213, b: 0, a: 0}
+    - _EmissionColor: {r: 0.745283, g: 0.6508537, b: 0.59528893, a: 0}
   m_BuildTextureStacks: []
