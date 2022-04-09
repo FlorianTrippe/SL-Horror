@@ -20,6 +20,8 @@ namespace KinematicCharacterController.Examples
         private bool _crouchBoolUp;
         private bool _runBoolDown;
         private bool _runBoolUp;
+        private bool _geigerStatus;
+        private bool _lampStatus;
         private float _scrollInput;
         private float _mouseLookAxisUp;
         private float _mouseLookAxisRight;
@@ -27,6 +29,7 @@ namespace KinematicCharacterController.Examples
 
         public bool ReadyToCharge = false;
 
+        [SerializeField] private Animator _anim;
         private void Start()
         {
             Cursor.lockState = CursorLockMode.Locked;
@@ -141,15 +144,39 @@ namespace KinematicCharacterController.Examples
         }
         public void InputGeiger(InputAction.CallbackContext context)
         {
+            switch (_geigerStatus)
+            {
+                case true:
+                    _anim.SetBool("GeigerIn", true);
+                    break;
+                case false:
+                    _anim.SetBool("GeigerOut", true);
+                    break;
+            }
+            _anim.SetBool("GeigerOut", false);
+            _anim.SetBool("GeigerIn", false);
+
         }
         public void InputFlashLight(InputAction.CallbackContext context)
         {
+            switch (_lampStatus)
+            {
+                case true:
+                    _anim.SetBool("LampAway", true);
+                    break;
+                case false:
+                    _anim.SetBool("LampOut", true);
+                    break;
+            }
+            _anim.SetBool("LampOut", false);
+            _anim.SetBool("LampAway", false);
         }
         public void InputCharger(InputAction.CallbackContext context)
         {
         }
         public void InputSwitchMaskFilters(InputAction.CallbackContext context)
         {
+            _anim.SetBool("Reload", true);
             if (context.phase == InputActionPhase.Performed)
             {
                 CableScript.DropKey();
@@ -157,6 +184,7 @@ namespace KinematicCharacterController.Examples
             else
             {
             }
+            _anim.SetBool("Reload", false);
         }
 
         private void HandleCameraInput()

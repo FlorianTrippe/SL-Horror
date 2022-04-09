@@ -12,12 +12,17 @@ public class SFXManager : MonoBehaviour
     void Start()
     {
         Instance = this;
-        SFXInstance = SFX;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void PlayClip(AudioClip clip)
+    {
+        SFX.PlayOneShot(clip);
     }
 }

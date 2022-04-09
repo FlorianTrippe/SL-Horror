@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class Door : Interactable
 {
-    private float _yRotation;
+    private Vector3 _startPosition;
+    [SerializeField] private Animator _anim;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
-        _yRotation = this.gameObject.transform.eulerAngles.y;
+        _startPosition = gameObject.transform.position;
     }
 
     // Update is called once per frame
@@ -19,39 +23,12 @@ public class Door : Interactable
 
     public override void Interact(GameObject player)
     {
-        base.Interact(player);
-        if(this.gameObject.transform.rotation.y == _yRotation)
-        {
-           
-            StartCoroutine(MoveDoor(false));
-        }
+        if (gameObject.transform.position == _startPosition)
+            _anim.SetBool("Opening", true);
         else
-        {
-            StartCoroutine(MoveDoor(true));
-        }
+            _anim.SetBool("Opening", false);
+        
     }
 
-    public IEnumerator MoveDoor(bool open)
-    {
-        bool wait = false;
-        switch (open)
-        {
-            
-            case true:
-                while (gameObject.transform.eulerAngles.y >= _yRotation) 
-                {
-                    gameObject.transform.Rotate(new Vector3(0, Time.deltaTime * -10, 0));
-                }
-                wait = true;
-                break;
-            case false:
-                while (gameObject.transform.eulerAngles.y <= _yRotation + 90)
-                {
-                    gameObject.transform.Rotate(new Vector3(0, Time.deltaTime * 10, 0));
-                }
-                wait = true;
-                break;
-        }
-        yield return new WaitUntil(() => wait == true);
-    }
+
 }
