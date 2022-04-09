@@ -385,6 +385,16 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 7185422885221573486}
+    - target: {fileID: 1084797269984175773, guid: f1062a39ff45f7441bdfa927deee4bf3,
+        type: 3}
+      propertyPath: _zeigerVater
+      value: 
+      objectReference: {fileID: 5512281012327556047}
+    - target: {fileID: 1084797269984175773, guid: f1062a39ff45f7441bdfa927deee4bf3,
+        type: 3}
+      propertyPath: _maxRotation.y
+      value: 240
+      objectReference: {fileID: 0}
     - target: {fileID: 1123602769013834778, guid: f1062a39ff45f7441bdfa927deee4bf3,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1215,6 +1225,16 @@ PrefabInstance:
       propertyPath: _anim
       value: 
       objectReference: {fileID: 8097220380190491199}
+    - target: {fileID: 7341252580640510753, guid: f1062a39ff45f7441bdfa927deee4bf3,
+        type: 3}
+      propertyPath: _squeak
+      value: 
+      objectReference: {fileID: 8300000, guid: 61ecca09b81ba6e42af65d637f5dba53, type: 3}
+    - target: {fileID: 7341252580640510753, guid: f1062a39ff45f7441bdfa927deee4bf3,
+        type: 3}
+      propertyPath: _lighSwitchSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 370ffae92b159ae4d92a9124ba7ad9a8, type: 3}
     - target: {fileID: 7475275866594433234, guid: f1062a39ff45f7441bdfa927deee4bf3,
         type: 3}
       propertyPath: m_Mesh
@@ -1461,6 +1481,12 @@ Transform:
 --- !u!1 &3669195530447084286 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6697480112458453146, guid: f1062a39ff45f7441bdfa927deee4bf3,
+    type: 3}
+  m_PrefabInstance: {fileID: 7933551750285068900}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5512281012327556047 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2478718296397031851, guid: f1062a39ff45f7441bdfa927deee4bf3,
     type: 3}
   m_PrefabInstance: {fileID: 7933551750285068900}
   m_PrefabAsset: {fileID: 0}

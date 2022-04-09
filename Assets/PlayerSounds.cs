@@ -7,6 +7,7 @@ public class PlayerSounds : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] private AudioClip _gasMaskReload;
     [SerializeField] private AudioClip _lighSwitchSound;
+    [SerializeField] private AudioClip _squeak;
     [SerializeField] private Animator _anim;
    
     void Start()
@@ -18,6 +19,10 @@ public class PlayerSounds : MonoBehaviour
     void Update()
     {
         
+    }
+    public void ChargeSound()
+    {
+        //SFXManager.Instance.PlayClip(_squeak);
     }
     public void ResetAnim()
     {

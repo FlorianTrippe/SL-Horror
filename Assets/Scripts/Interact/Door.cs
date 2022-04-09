@@ -5,8 +5,8 @@ using UnityEngine;
 public class Door : Interactable
 {
     private Vector3 _startPosition;
-    [SerializeField] private Animator _anim;
-
+    public Animator Anim;
+    public bool TutorialDoor;
 
 
     // Start is called before the first frame update
@@ -23,11 +23,13 @@ public class Door : Interactable
 
     public override void Interact(GameObject player)
     {
-        if (gameObject.transform.position == _startPosition)
-            _anim.SetBool("Opening", true);
-        else
-            _anim.SetBool("Opening", false);
-        
+        if (!TutorialDoor)
+        {
+            if (gameObject.transform.position == _startPosition)
+                Anim.SetBool("Opening", true);
+            else
+                Anim.SetBool("Opening", false);
+        }
     }
 
     public void DoorOpen()

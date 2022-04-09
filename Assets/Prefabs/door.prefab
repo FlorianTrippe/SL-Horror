@@ -945,7 +945,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba713d4c9a3a54249b4208eefba666a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _anim: {fileID: 4552991127840071288}
+  Anim: {fileID: 4552991127840071288}
+  TutorialDoor: 0
 --- !u!208 &6271634332237471706
 NavMeshObstacle:
   m_ObjectHideFlags: 0
