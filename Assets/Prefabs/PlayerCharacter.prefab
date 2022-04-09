@@ -140,6 +140,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 985834508483493368, guid: 62d052de0160f38478f4a0583db450ad,
         type: 3}
+      propertyPath: _anim
+      value: 
+      objectReference: {fileID: 8097220380190491199}
+    - target: {fileID: 985834508483493368, guid: 62d052de0160f38478f4a0583db450ad,
+        type: 3}
       propertyPath: Character
       value: 
       objectReference: {fileID: 7788363675222403212}
@@ -1445,6 +1450,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92e636df1573161419d7b98184fe08f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &8097220380190491199 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2181633657069193307, guid: f1062a39ff45f7441bdfa927deee4bf3,
+    type: 3}
+  m_PrefabInstance: {fileID: 7933551750285068900}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8650956606142455183 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1592018597144369131, guid: f1062a39ff45f7441bdfa927deee4bf3,

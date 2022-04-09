@@ -22,6 +22,7 @@ namespace KinematicCharacterController.Examples
         private bool _runBoolUp;
         private bool _geigerStatus;
         private bool _lampStatus;
+        private bool _chargerStatus;
         private float _scrollInput;
         private float _mouseLookAxisUp;
         private float _mouseLookAxisRight;
@@ -173,18 +174,32 @@ namespace KinematicCharacterController.Examples
         }
         public void InputCharger(InputAction.CallbackContext context)
         {
+            switch (_chargerStatus)
+            {
+                case true:
+                    _anim.SetBool("ChargerAway", true);
+                    break;
+                case false:
+                    _anim.SetBool("ChargerOut", true);
+                    break;
+            }
+            _anim.SetBool("ChargerOut", false);
+            _anim.SetBool("ChargerAway", false);
         }
         public void InputSwitchMaskFilters(InputAction.CallbackContext context)
         {
-            _anim.SetBool("Reload", true);
+            
             if (context.phase == InputActionPhase.Performed)
             {
+                _anim.SetBool("Reload", true);
                 CableScript.DropKey();
+                
             }
             else
             {
+                _anim.SetBool("Reload", false);
             }
-            _anim.SetBool("Reload", false);
+            
         }
 
         private void HandleCameraInput()
