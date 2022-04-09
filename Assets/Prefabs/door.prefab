@@ -486,7 +486,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Shape:
     rid: 6744975184516612114
-  m_Size: {x: 2.5, y: 2.75, z: 0.5}
+  m_Size: {x: 3.5, y: 3.125, z: 0.5}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
   m_PivotLocation: 0
   m_PivotPosition: {x: 0, y: 0, z: 0}
@@ -582,6 +582,7 @@ GameObject:
   - component: {fileID: 2872734536230054526}
   - component: {fileID: 4552991127840071288}
   - component: {fileID: 3223295326060853464}
+  - component: {fileID: 6271634332237471706}
   m_Layer: 3
   m_Name: Cube (41)
   m_TagString: Untagged
@@ -945,6 +946,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _anim: {fileID: 4552991127840071288}
+--- !u!208 &6271634332237471706
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2872734536230054527}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1, y: 1.25, z: 0.125}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.25, z: 0.125}
+  m_TimeToStationary: 0.5
 --- !u!1 &4888337695811547998
 GameObject:
   m_ObjectHideFlags: 0
