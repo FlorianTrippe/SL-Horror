@@ -320,6 +320,11 @@ PrefabInstance:
       propertyPath: m_FOVAxisMode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 400997902909174239, guid: f1062a39ff45f7441bdfa927deee4bf3,
+        type: 3}
+      propertyPath: near clip plane
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 518337325995371595, guid: f1062a39ff45f7441bdfa927deee4bf3,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
