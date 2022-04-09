@@ -11,10 +11,14 @@ public class CableScripts : MonoBehaviour
 {
     [SerializeField] private LayerMask _interactableLayerMask;
     [SerializeField] private GameObject _bonfireKey;
+    [SerializeField] private float _bonfireDropSoundFallOffDistance;
     [SerializeField] private GameObject _charger;
+    [SerializeField] private float _chargeSoundFallOffDistance;
     [SerializeField] private GameObject _flashLight;
     [SerializeField] private GameObject _geiger;
+    [SerializeField] private float _geigerSoundFallOffDistance;
     [SerializeField] private GameObject _filter;
+    [SerializeField] private float _filterChangeSoundFallOffDistance;
     [SerializeField] private GameObject _itemSpawnPoint;
     [SerializeField] private GameObject _enemy;
     [SerializeField] private ExamplePlayer _player;
@@ -107,6 +111,7 @@ public class CableScripts : MonoBehaviour
 
     public void Charge()
     {
+        NoiseManager.NoiseManagerReference.SetNoise(transform.position, false, _chargeSoundFallOffDistance);
         if (_chargingOwnBattery)
         {
             ChargingState += _chargingSpeed;
@@ -129,6 +134,7 @@ public class CableScripts : MonoBehaviour
     }
     public void ChangeFilter()
     {
+        NoiseManager.NoiseManagerReference.SetNoise(transform.position, false, _filterChangeSoundFallOffDistance);
         if (_filterCount > 0)
         {
             DropKey();
@@ -183,6 +189,7 @@ public class CableScripts : MonoBehaviour
     {
         if (_hasBonfireKey)
         {
+            NoiseManager.NoiseManagerReference.SetNoise(transform.position, false, _bonfireDropSoundFallOffDistance);
             Destroy(_itemSpawnPoint.transform.GetChild(_itemSpawnPoint.transform.childCount - 1).gameObject);
             _hasBonfireKey = false;
             Instantiate(_bonfireKey, transform.position, Quaternion.identity);
