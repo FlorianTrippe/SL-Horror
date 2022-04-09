@@ -7,6 +7,9 @@ public class FindPositionOnNavMesh : Action
 {
     [UnityEngine.Tooltip("The NavMeshAgent destination")]
     public SharedVector3 Destination;
+    [SharedRequired]
+    [BehaviorDesigner.Runtime.Tasks.Tooltip("The NavMeshAgent destination")]
+    public SharedFloat RoamRadius;
 
 public override void OnStart()
 	{
@@ -15,7 +18,7 @@ public override void OnStart()
 
 	public override TaskStatus OnUpdate()
     {
-        Destination.Value = RandomNavmeshLocation(4);
+        Destination.Value = RandomNavmeshLocation(RoamRadius.Value);
 		return TaskStatus.Success;
 	}
 

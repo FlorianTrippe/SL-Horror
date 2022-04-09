@@ -5,20 +5,20 @@ using UnityEngine.UI;
 
 public class Battery : Interactable
 {
-    [SerializeField] private float _standardChargingCapacity;
-    [SerializeField] private float _chargeDangerZone;
-    [SerializeField] private float _chargeDeadZone;
-    [SerializeField] private float _charge;
-    [SerializeField] private float _chargeDrainBoostMax;
-    [SerializeField] private float _ChargeDrain;
-    [SerializeField] private float _minDistanceEnemyDischargeBoost;
-    [SerializeField] private GameObject _enemy;
+    [SerializeField] protected float _standardChargingCapacity;
+    [SerializeField] protected float _chargeDangerZone;
+    [SerializeField] protected float _chargeDeadZone;
+    [SerializeField] protected float _charge;
+    [SerializeField] protected float _chargeDrainBoostMax;
+    [SerializeField] protected float _ChargeDrain;
+    [SerializeField] protected float _minDistanceEnemyDischargeBoost;
+    [SerializeField] protected GameObject _enemy;
 
-    [SerializeField] private GameObject obj1;
-    [SerializeField] private Slider _slider;
-    [SerializeField] private Image _fill;
+    [SerializeField] protected GameObject obj1;
+    [SerializeField] protected Slider _slider;
+    [SerializeField] protected Image _fill;
 
-    [SerializeField] private float _currentCharge;
+    [SerializeField] protected float _currentCharge;
 
     private Renderer _renderer;
 
@@ -27,7 +27,7 @@ public class Battery : Interactable
         _renderer = GetComponent<Renderer>();
         _slider.maxValue = _chargeDeadZone;
     }
-    private void Update()
+    protected virtual void Update()
     {
         if (_currentCharge > 0)
         {
