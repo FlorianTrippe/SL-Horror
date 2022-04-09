@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68b8174d11dd3104eaba1b33c8ba3844, type: 3}
   m_Name: SO_Settings
   m_EditorClassIdentifier: 
-  resolutionValue: 0
+  resolutionValue: 1
   windowModeValue: 0
   brightnessValue: 0
   renderDistanceValue: 1125
@@ -28,6 +28,6 @@ MonoBehaviour:
   skinWeightsValue: 2
   lODBiasValue: 2
   particleRaycastBudgetValue: 3
-  mouseSensivityValue: 0.08051054
+  mouseSensivityValue: 0.036279246
   mouseXInvertValue: 0
   mouseYInvertValue: 0

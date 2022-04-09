@@ -16,8 +16,8 @@ namespace KinematicCharacterController.Examples
         public ExampleCharacterController Character;
         public ExampleCharacterCamera CharacterCamera;
         public CableScripts CableScript;
-        public float MouseSensibilityX = 0.2f;
-        public float MouseSensibilityY = 0.2f;
+        //public float MouseSensibilityX = 0.2f;
+        //public float MouseSensibilityY = 0.2f;
 
         private bool _jumpBool;
         private bool _crouchBoolDown;
@@ -76,10 +76,10 @@ namespace KinematicCharacterController.Examples
             _mouseLookAxisRight = MouseDelta.x * _soSettings.mouseSensivityValue;
 
             if (_soSettings.mouseXInvertValue)
-                _mouseLookAxisRight = -1f;
+                _mouseLookAxisRight *= -1f;
 
             if (_soSettings.mouseYInvertValue)
-                _mouseLookAxisUp= -1f;
+                _mouseLookAxisUp *= -1f;
         }
         public void InputScroll(InputAction.CallbackContext context)
         {
