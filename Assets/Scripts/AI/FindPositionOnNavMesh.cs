@@ -5,13 +5,17 @@ using UnityEngine.AI;
 
 public class FindPositionOnNavMesh : Action
 {
-	public override void OnStart()
+    [UnityEngine.Tooltip("The NavMeshAgent destination")]
+    public SharedVector3 Destination;
+
+public override void OnStart()
 	{
 		
 	}
 
 	public override TaskStatus OnUpdate()
-	{
+    {
+        Destination.Value = RandomNavmeshLocation(4);
 		return TaskStatus.Success;
 	}
 

@@ -12,8 +12,8 @@ public class EcchiEnemy : MonoBehaviour
     [SerializeField] private Sight _sightTrigger;
     [SerializeField] private LayerMask _sightLayerMask;
     [SerializeField] private GameObject _targetTarget;
-    
 
+    public GameObject Obj;
 
     void Start()
     {
@@ -37,22 +37,33 @@ public class EcchiEnemy : MonoBehaviour
 
         foreach (GameObject obj in _sightTrigger.CheckSight())
         {
-            Debug.DrawRay(_sightCone.transform.position, obj.transform.position + Vector3.down, Color.red, 1f);
-            if (Physics.Raycast(_sightCone.transform.position, obj.transform.position + Vector3.down, out hit, Mathf.Infinity, _sightLayerMask))
+            Vector3 pos = obj.transform.position - _sightCone.transform.position;
+            Debug.DrawRay(_sightCone.transform.position, pos, Color.red, 1f);
+            if (Physics.Raycast(_sightCone.transform.position, pos, out hit, Mathf.Infinity, _sightLayerMask))
             {
-                if (hit.transform.gameObject == obj)
-                {
-                    returnList.Add(obj);
-                }
+                Obj = obj;
+                returnList.Add(obj);
             }
         }
 
         return returnList;
     }
 
+    public void ResetNoise()
+    {
+        NoiseManager.NoiseManagerReference.ResetNoise();
+    }
+
     public bool CheckForNoise()
     {
-        return NoiseManager.NoiseManagerReference.HeardNoise();
+        if (NoiseManager.NoiseManagerReference.HeardNoise())
+        {
+            if (NoiseManager.NoiseManagerReference.FallOffDistance() >= Vector3.Distance(NoiseManager.NoiseManagerReference.NoiseLocation(), transform.position))
+            {
+                return true;
+            }
+        }
+        return false;
     }
     public Vector3 CheckForNoiseLocation()
     {

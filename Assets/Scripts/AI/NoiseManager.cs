@@ -30,6 +30,11 @@ public class NoiseManager : MonoBehaviour
         _noiseLocation = Vector3.zero;
     }
 
+    public float FallOffDistance()
+    {
+        return _fallOffDistance;
+    }
+
     public bool HeardNoise()
     {
         return _heardNoise;
@@ -38,5 +43,13 @@ public class NoiseManager : MonoBehaviour
     public Vector3 NoiseLocation()
     {
         return _noiseLocation;
+    }
+
+    public void ResetNoise()
+    {
+        _fallOffDistance = 0f;
+        _alarmingNoise = false;
+        _heardNoise = false;
+        _noiseLocation = Vector3.zero;
     }
 }
