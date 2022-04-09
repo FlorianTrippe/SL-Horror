@@ -53,7 +53,7 @@ Material:
     - _Emissionstrngstdt: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _UVScale: 0.69
+    - _UVScale: 0.42
     m_Colors:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
