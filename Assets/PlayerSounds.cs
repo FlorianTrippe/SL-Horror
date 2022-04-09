@@ -7,6 +7,8 @@ public class PlayerSounds : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] private AudioClip _gasMaskReload;
     [SerializeField] private AudioClip _lighSwitchSound;
+    [SerializeField] private Animator _anim;
+   
     void Start()
     {
         
@@ -17,14 +19,17 @@ public class PlayerSounds : MonoBehaviour
     {
         
     }
-
+    public void ResetAnim()
+    {
+        _anim.SetBool("Charging", false);
+    }
     public void PlayGasMaskReload()
     {
-        SFXManager.Instance.PlayClip(_gasMaskReload);
+       // SFXManager.Instance.PlayClip(_gasMaskReload);
     }
 
     public void PlayLightSwitchSound()
     {
-        SFXManager.Instance.PlayClip(_lighSwitchSound);
+        //SFXManager.Instance.PlayClip(_lighSwitchSound);
     }
 }

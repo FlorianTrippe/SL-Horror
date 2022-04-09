@@ -29,6 +29,8 @@ public class CableScripts : MonoBehaviour
     [SerializeField] private float _chargingDrain;
     [SerializeField] private float _maxCharge;
     [SerializeField] private GameObject Camera;
+    [SerializeField] private GameObject _zeigerVater;
+    [SerializeField] private Vector3 _maxRotation;
 
     private bool _hasBonfireKey;
     private bool _hasCharger;
@@ -46,6 +48,7 @@ public class CableScripts : MonoBehaviour
     private GameObject _lastBonfire;
     private GameObject _otherBattery;
 
+    public bool CanCharge = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -62,7 +65,7 @@ public class CableScripts : MonoBehaviour
         }
 
         ChargingState -= _chargingDrain * Time.deltaTime;
-
+        ChargeUpdate();
         _chargeSlider.value = ChargingState;
     }
 
@@ -101,6 +104,15 @@ public class CableScripts : MonoBehaviour
     {
 
     }
+    private void ChargeUpdate()
+    {
+        if(ChargingState <= _maxCharge && ChargingState != 0)
+        {
+            float merkmal = _maxRotation.y / 100;
+            float prozent = ChargingState / _maxCharge;
+            _zeigerVater.transform.rotation = new Quaternion(0, _maxRotation.y/prozent, 0,0);
+        }
+    }
 
     public void ChargingOtherBattery(GameObject battery)
     {
@@ -112,17 +124,20 @@ public class CableScripts : MonoBehaviour
 
     public void Charge()
     {
-        NoiseManager.NoiseManagerReference.SetNoise(transform.position, false, _chargeSoundFallOffDistance);
-        if (_chargingOwnBattery)
+        if (CanCharge)
         {
-            ChargingState += _chargingSpeed;
-            if (ChargingState >= _maxCharge)
-                ChargingState = _maxCharge;
-        }
-        else
-        {
-            Battery battery = _otherBattery.GetComponent<Battery>();
-            battery.Charge();
+            NoiseManager.NoiseManagerReference.SetNoise(transform.position, false, _chargeSoundFallOffDistance);
+            if (_chargingOwnBattery)
+            {
+                ChargingState += _chargingSpeed;
+                if (ChargingState >= _maxCharge)
+                    ChargingState = _maxCharge;
+            }
+            else
+            {
+                Battery battery = _otherBattery.GetComponent<Battery>();
+                battery.Charge();
+            }
         }
     }
 
@@ -242,6 +257,10 @@ public class CableScripts : MonoBehaviour
             Interactable interact = hit.transform.gameObject.GetComponent<Interactable>();
             interact.Interact(this.gameObject);
         }
+    }
+    public void dings()
+    {
+
     }
     public void HoldInteract()
     {

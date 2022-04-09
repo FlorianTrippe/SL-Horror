@@ -1030,6 +1030,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5531959464010805533, guid: f1062a39ff45f7441bdfa927deee4bf3,
+        type: 3}
+      propertyPath: m_Name
+      value: zeiger
+      objectReference: {fileID: 0}
     - target: {fileID: 5542360694771414816, guid: f1062a39ff45f7441bdfa927deee4bf3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1205,6 +1210,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 179.99998
       objectReference: {fileID: 0}
+    - target: {fileID: 7341252580640510753, guid: f1062a39ff45f7441bdfa927deee4bf3,
+        type: 3}
+      propertyPath: _anim
+      value: 
+      objectReference: {fileID: 8097220380190491199}
     - target: {fileID: 7475275866594433234, guid: f1062a39ff45f7441bdfa927deee4bf3,
         type: 3}
       propertyPath: m_Mesh
