@@ -28,6 +28,7 @@ public class CableScripts : MonoBehaviour
     [SerializeField] private float _chargingSpeed;
     [SerializeField] private float _chargingDrain;
     [SerializeField] private float _maxCharge;
+    [SerializeField] private GameObject Camera;
 
     private bool _hasBonfireKey;
     private bool _hasCharger;
@@ -235,8 +236,8 @@ public class CableScripts : MonoBehaviour
     }
     public void Interact()
     {
-        Debug.DrawRay(transform.position,transform.forward * 1.5f,Color.green);
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 1.5f, _interactableLayerMask))
+        Debug.DrawRay(Camera.transform.position,Camera.transform.forward * 1.5f,Color.green);
+        if (Physics.Raycast(Camera.transform.position, Camera.transform.forward, out RaycastHit hit, 1.5f, _interactableLayerMask))
         {
             Interactable interact = hit.transform.gameObject.GetComponent<Interactable>();
             interact.Interact(this.gameObject);

@@ -30,5 +30,10 @@ public class Door : Interactable
         
     }
 
+    public void DoorOpen()
+    {
+        Destroy(gameObject);
+    }
+
 
 }

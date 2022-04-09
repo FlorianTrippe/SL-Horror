@@ -81,27 +81,33 @@ namespace KinematicCharacterController.Examples
                 if (ReadyToCharge)
                 {
                     CableScript.Charge();
+                    _anim.SetBool("Charging", true);
                 }
                 else
                 {
                     Debug.Log("Click");
-                    CableScript.Interact();
+                    CableScript.Interact();                    
                 }
             }
             else
             {
+                _anim.SetBool("Charging", false);
             }
         }
         public void InputRightClick(InputAction.CallbackContext context)
         {
             if (context.phase == InputActionPhase.Performed)
             {
+                _anim.SetBool("ChargerAway", false);
                 Debug.Log("Click Right");
                 CableScript.EquipCharger();
                 ReadyToCharge = true;
+                _anim.SetBool("ChargerOut", true);
             }
-            else
+            if(context.phase == InputActionPhase.Canceled)
             {
+                _anim.SetBool("ChargerOut", false);
+                _anim.SetBool("ChargerAway", true);
                 CableScript.EquipLastItem();
                 ReadyToCharge = false;
             }
@@ -145,46 +151,70 @@ namespace KinematicCharacterController.Examples
         }
         public void InputGeiger(InputAction.CallbackContext context)
         {
-            switch (_geigerStatus)
+            if (context.phase == InputActionPhase.Performed)
             {
-                case true:
-                    _anim.SetBool("GeigerIn", true);
-                    break;
-                case false:
-                    _anim.SetBool("GeigerOut", true);
-                    break;
+                switch (_geigerStatus)
+                {
+                    case true:
+                        _anim.SetBool("GeigerIn", true);
+                        _geigerStatus = false;
+                        break;
+                    case false:
+                        _anim.SetBool("GeigerOut", true);
+                        _geigerStatus = true;
+                        break;
+                }
             }
-            _anim.SetBool("GeigerOut", false);
-            _anim.SetBool("GeigerIn", false);
+            else
+            {
+                _anim.SetBool("GeigerOut", false);
+                _anim.SetBool("GeigerIn", false);
+            }
 
         }
         public void InputFlashLight(InputAction.CallbackContext context)
         {
-            switch (_lampStatus)
+            if (context.phase == InputActionPhase.Performed)
             {
-                case true:
-                    _anim.SetBool("LampAway", true);
-                    break;
-                case false:
-                    _anim.SetBool("LampOut", true);
-                    break;
+                switch (_lampStatus)
+                {
+                    case true:
+                        _anim.SetBool("LampAway", true);
+                        _lampStatus = false;
+                        break;
+                    case false:
+                        _anim.SetBool("LampOut", true);
+                        _lampStatus = true;
+                        break;
+                }
             }
-            _anim.SetBool("LampOut", false);
-            _anim.SetBool("LampAway", false);
+            else
+            {
+                _anim.SetBool("LampOut", false);
+                _anim.SetBool("LampAway", false);
+            }
         }
         public void InputCharger(InputAction.CallbackContext context)
         {
-            switch (_chargerStatus)
+            if (context.phase == InputActionPhase.Performed)
             {
-                case true:
-                    _anim.SetBool("ChargerAway", true);
-                    break;
-                case false:
-                    _anim.SetBool("ChargerOut", true);
-                    break;
+                switch (_chargerStatus)
+                {
+                    case true:
+                        _anim.SetBool("ChargerAway", true);
+                        _chargerStatus = false;
+                        break;
+                    case false:
+                        _anim.SetBool("ChargerOut", true);
+                        _chargerStatus = true;
+                        break;
+                }
             }
-            _anim.SetBool("ChargerOut", false);
-            _anim.SetBool("ChargerAway", false);
+            else
+            {
+                _anim.SetBool("ChargerOut", false);
+                _anim.SetBool("ChargerAway", false);
+            }
         }
         public void InputSwitchMaskFilters(InputAction.CallbackContext context)
         {
