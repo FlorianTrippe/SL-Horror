@@ -26,5 +26,10 @@ namespace GameSettings
         public int skinWeightsValue;
         public int lODBiasValue;
         public int particleRaycastBudgetValue;
+
+        [Header("Game Settings")] 
+        public float mouseSensivityValue;
+        public bool mouseXInvertValue;
+        public bool mouseYInvertValue;
     }
 }

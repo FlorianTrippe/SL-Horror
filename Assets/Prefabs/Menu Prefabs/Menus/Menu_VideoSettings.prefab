@@ -1122,7 +1122,7 @@ PrefabInstance:
     - target: {fileID: 6179383106091191285, guid: 3d222fb4186e1fd41a41c2b26c621ec1,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1000
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6570721842969196917, guid: 3d222fb4186e1fd41a41c2b26c621ec1,
         type: 3}
@@ -1162,7 +1162,7 @@ PrefabInstance:
     - target: {fileID: 9192074947421139661, guid: 3d222fb4186e1fd41a41c2b26c621ec1,
         type: 3}
       propertyPath: m_Size
-      value: 0.61538464
+      value: 0.40625
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d222fb4186e1fd41a41c2b26c621ec1, type: 3}
@@ -1202,40 +1202,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5405b9b412f2e804bae334819055adf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Urp: {fileID: 11400000, guid: 7b7fd9122c28c4d15b667c7040e3b3fd, type: 2}
-  PostProcessVolume: {fileID: 11400000, guid: 4e6fa3fc0787e584c9c7b4a3301d1239, type: 2}
-  SOSettings: {fileID: 11400000, guid: 51a904484967450419d479a6c79a1ae9, type: 2}
-  DefaultSettings: {fileID: 11400000, guid: 75f2447ca6093da4cafc7a8783bab224, type: 2}
-  CameraGO: {fileID: 11400000, guid: 8ab3130877304da418c0ca1d962240b2, type: 2}
+  _urp: {fileID: 11400000, guid: 7b7fd9122c28c4d15b667c7040e3b3fd, type: 2}
+  _postProcessVolume: {fileID: 11400000, guid: 4e6fa3fc0787e584c9c7b4a3301d1239, type: 2}
+  _soSettings: {fileID: 11400000, guid: 51a904484967450419d479a6c79a1ae9, type: 2}
+  _defaultSettings: {fileID: 11400000, guid: 75f2447ca6093da4cafc7a8783bab224, type: 2}
+  _soCamera: {fileID: 11400000, guid: 8ab3130877304da418c0ca1d962240b2, type: 2}
   _resPopUp: {fileID: 0}
   _acceptButton: {fileID: 0}
   _revertButton: {fileID: 0}
   _maxPopUpTimer: 10
   _popUpText: {fileID: 0}
-  ResolutionDD: {fileID: 6435732382270246492}
-  WindowModeDD: {fileID: 4855933859553631280}
-  AntiAliasingDD: {fileID: 909854810381666032}
-  ShadowQualityDD: {fileID: 5445105007821522427}
-  TextureQualityDD: {fileID: 5026326070513114935}
-  AnisotropicTexturesDD: {fileID: 6057102922205749217}
-  SkinWeightsDD: {fileID: 5791082470123164856}
-  LODBiasDD: {fileID: 2757209737895645596}
-  ParticleRaycastBudgetDD: {fileID: 7567686171889257315}
-  BrightnessSlider:
+  _resolutionDD: {fileID: 6435732382270246492}
+  _windowModeDD: {fileID: 4855933859553631280}
+  _antiAliasingDD: {fileID: 909854810381666032}
+  _shadowQualityDD: {fileID: 5445105007821522427}
+  _textureQualityDD: {fileID: 5026326070513114935}
+  _anisotropicTexturesDD: {fileID: 6057102922205749217}
+  _skinWeightsDD: {fileID: 5791082470123164856}
+  _lodBiasDD: {fileID: 2757209737895645596}
+  _particleRaycastBudgetDD: {fileID: 7567686171889257315}
+  _brightnessSlider:
     Slider: {fileID: 8350628195589126996}
     TextSlider: {fileID: 6529054868799303806}
     MaxSliderValue: 1
     MinSliderValue: -4
-  RenderDistanceSlider:
+  _renderDistanceSlider:
     Slider: {fileID: 9023140633673943643}
     TextSlider: {fileID: 6070881227389600113}
-    MaxSliderValue: 1500
-    MinSliderValue: 750
-  VSyncToggle: {fileID: 4831471674177422413}
-  SoftShadowsToggle: {fileID: 330822902745427380}
-  SoftParticlesToggle: {fileID: 8031513511738281859}
-  RealtimeReflectionProbesToggle: {fileID: 7309195191179396346}
-  BillboardsFacingCameraPositionsToggle: {fileID: 4207665238356553982}
+    MaxSliderValue: 750
+    MinSliderValue: 1500
+  _mouseSensivitySlider:
+    Slider: {fileID: 0}
+    TextSlider: {fileID: 0}
+    MaxSliderValue: 0
+    MinSliderValue: 0
+  _vSyncToggle: {fileID: 4831471674177422413}
+  _softShadowsToggle: {fileID: 330822902745427380}
+  _softParticlesToggle: {fileID: 8031513511738281859}
+  _realtimeReflectionProbesToggle: {fileID: 7309195191179396346}
+  _billboardsFacingCameraPositionsToggle: {fileID: 4207665238356553982}
 --- !u!1001 &4454016395497819434
 PrefabInstance:
   m_ObjectHideFlags: 0

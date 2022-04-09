@@ -28,3 +28,4 @@ MonoBehaviour:
   skinWeightsValue: 2
   lODBiasValue: 2
   particleRaycastBudgetValue: 3
+  mouseSensivityValue: 0.1

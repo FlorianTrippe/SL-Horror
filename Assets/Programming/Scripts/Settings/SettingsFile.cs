@@ -27,8 +27,14 @@ namespace GameSettings
         public int lODBias;
         public int particleRaycastBudget;
 
+        // Game Settings
+        public float mouseSensivity;
+        public bool mouseXInvert;
+        public bool mouseYInvert;
+
         public SettingsFile(SO_Settings settings)
         {
+            // Video Settings
             resolution = settings.resolutionValue;
             windowMode = settings.windowModeValue;
             brightness = settings.brightnessValue;
@@ -46,6 +52,11 @@ namespace GameSettings
             skinWeights = settings.skinWeightsValue;
             lODBias = settings.lODBiasValue;
             particleRaycastBudget = settings.particleRaycastBudgetValue;
+
+            // Game Settings
+            mouseSensivity = settings.mouseSensivityValue;
+            mouseXInvert = settings.mouseXInvertValue;
+            mouseYInvert = settings.mouseYInvertValue;
         }
     }
 }

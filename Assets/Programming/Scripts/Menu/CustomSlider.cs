@@ -50,11 +50,21 @@ namespace GameSettings
         }
 
         // Convert from virtual value to actual and set the text appropriately
-        public float SliderVirtualToActualConversion(SliderSettings settings, float currentValue)
+        public float SliderVirtualToActualConversionInt(SliderSettings settings, float currentValue)
         {
             float conversion = ConvertVirtualToActualValue(settings.Slider.minValue, settings.Slider.maxValue, settings.MinSliderValue,
                 settings.MaxSliderValue, currentValue);
             settings.TextSlider.text = Mathf.RoundToInt(currentValue).ToString();
+
+            return conversion;
+        }
+
+        // Convert from virtual value to actual and set the text appropriately
+        public float SliderVirtualToActualConversionWithoutRound(SliderSettings settings, float currentValue)
+        {
+            float conversion = ConvertVirtualToActualValue(settings.Slider.minValue, settings.Slider.maxValue, settings.MinSliderValue,
+                settings.MaxSliderValue, currentValue);
+            settings.TextSlider.text = currentValue.ToString("F2");
 
             return conversion;
         }
@@ -70,11 +80,21 @@ namespace GameSettings
         }
 
         // Convert from actual value to virtual and set the text appropriately
-        public float SliderActualToVirtualConversion(SliderSettings settings, float currentValue)
+        public float SliderActualToVirtualConversionInt(SliderSettings settings, float currentValue)
         {
             float conversion = ConvertActualToVirtualValue(settings.Slider.minValue, settings.Slider.maxValue, settings.MinSliderValue,
                 settings.MaxSliderValue, currentValue);
             settings.TextSlider.text = Mathf.RoundToInt(conversion).ToString();
+
+            return conversion;
+        }
+
+        // Convert from actual value to virtual and set the text appropriately
+        public float SliderActualToVirtualConversionWithoutRound(SliderSettings settings, float currentValue)
+        {
+            float conversion = ConvertActualToVirtualValue(settings.Slider.minValue, settings.Slider.maxValue, settings.MinSliderValue,
+                settings.MaxSliderValue, currentValue);
+            settings.TextSlider.text = conversion.ToString("F2");
 
             return conversion;
         }

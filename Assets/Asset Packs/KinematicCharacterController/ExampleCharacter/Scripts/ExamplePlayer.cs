@@ -4,11 +4,15 @@ using UnityEngine;
 using KinematicCharacterController;
 using KinematicCharacterController.Examples;
 using UnityEngine.InputSystem;
+using GameSettings;
 
 namespace KinematicCharacterController.Examples
 {
     public class ExamplePlayer : MonoBehaviour
     {
+        [Header("Scriptable Objects")] 
+        [SerializeField] private SO_Settings _soSettings;
+
         public ExampleCharacterController Character;
         public ExampleCharacterCamera CharacterCamera;
         public CableScripts CableScript;
@@ -68,8 +72,14 @@ namespace KinematicCharacterController.Examples
         public void InputLook(InputAction.CallbackContext context)
         {
             Vector2 MouseDelta = context.ReadValue<Vector2>();
-            _mouseLookAxisUp = MouseDelta.y * MouseSensibilityY;
-            _mouseLookAxisRight = MouseDelta.x * MouseSensibilityX;
+            _mouseLookAxisUp = MouseDelta.y * _soSettings.mouseSensivityValue;
+            _mouseLookAxisRight = MouseDelta.x * _soSettings.mouseSensivityValue;
+
+            if (_soSettings.mouseXInvertValue)
+                _mouseLookAxisRight = -1f;
+
+            if (_soSettings.mouseYInvertValue)
+                _mouseLookAxisUp= -1f;
         }
         public void InputScroll(InputAction.CallbackContext context)
         {

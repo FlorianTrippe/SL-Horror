@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 985834508483493371}
   - component: {fileID: 985834508483493368}
   - component: {fileID: 3950777308254910208}
+  - component: {fileID: 3885474130983347112}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -45,11 +46,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 461cd396e3fc7cc4eb9c92bde05c1b9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _soSettings: {fileID: 11400000, guid: 51a904484967450419d479a6c79a1ae9, type: 2}
   Character: {fileID: 0}
   CharacterCamera: {fileID: 0}
   CableScript: {fileID: 0}
-  MouseSensibilityX: 0.1
-  MouseSensibilityY: 0.1
+  MouseSensivity: 0
+  ReadyToCharge: 0
+  _anim: {fileID: 0}
 --- !u!114 &3950777308254910208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,3 +275,17 @@ MonoBehaviour:
   m_DefaultActionMap: PlayerActionMap
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &3885474130983347112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985834508483493369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d83bfa7da2268b74a89ad94f8d1f6ede, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SOGameObject: {fileID: 11400000, guid: 27977e227623c2347992c4274c793260, type: 2}
+  AssignWithThisGO: {fileID: 985834508483493369}
