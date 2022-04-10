@@ -100,6 +100,7 @@ public class CableScripts : MonoBehaviour
                 else
                 {
                     _geigerTime = 0;
+                    SFXManager.Instance.PlayClip(SFXManager.Instance.SFXList[0]);
                     //TODO: Play Sound
                 }
             }
