@@ -26,7 +26,7 @@ public class SelectionManager : MonoBehaviour
             else
             {
                 _interactablePopUp.SetActive(false);
-                _interactableDescripiton.SetText("");
+                //_interactableDescripiton.SetText("");
             }
         }
     }

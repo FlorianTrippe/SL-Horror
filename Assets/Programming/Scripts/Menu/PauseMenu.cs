@@ -21,6 +21,12 @@ public class PauseMenu : MonoBehaviour
     [Header("Menus")] 
     [SerializeField] private GameObject _settingsMenu;
 
+    private void Start()
+    {
+        Debug.Log("Start");
+        AssignButtonEvents();
+    }
+
     // Handle exit game pop up
     private void HandleExitGame(string text)
     {
@@ -52,12 +58,16 @@ public class PauseMenu : MonoBehaviour
     // Resume Game
     private void Resume()
     {
+        Time.timeScale = 1f;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         gameObject.SetActive(false);
     }
 
     // Main Menu
     private void MainMenu()
     {
+        Time.timeScale = 1f;
         gameObject.SetActive(false);
         SceneManager.LoadScene("S_Menu_Testing");
     }
@@ -68,11 +78,6 @@ public class PauseMenu : MonoBehaviour
         _resumeButton.onClick.AddListener(delegate { Resume(); });
         _settingsButton.onClick.AddListener(delegate { Settings(); });
         _mainMenuButton.onClick.AddListener(delegate { MainMenu(); });
+        Debug.Log("Buttons Assigned");
     }
-
-    private void Start()
-    {
-        AssignButtonEvents();
-    }
-
 }

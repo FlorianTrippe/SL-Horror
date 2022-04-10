@@ -13,6 +13,9 @@ namespace KinematicCharacterController.Examples
         [Header("Scriptable Objects")] 
         [SerializeField] private SO_Settings _soSettings;
 
+        [Header("Menus")]
+        [SerializeField] private PauseMenuManager _pauseMenuManager;
+
         public ExampleCharacterController Character;
         public ExampleCharacterCamera CharacterCamera;
         public CableScripts CableScript;
@@ -32,6 +35,7 @@ namespace KinematicCharacterController.Examples
         private float _mouseLookAxisUp;
         private float _mouseLookAxisRight;
         private Vector2 _moveVector;
+        private bool _paused;
         [SerializeField] private Animator _playerSteps;
 
         public bool ReadyToCharge = false;
@@ -268,7 +272,7 @@ namespace KinematicCharacterController.Examples
         {
             if (context.phase == InputActionPhase.Performed)
             {
-                //TODO: Leon Menu
+                _pauseMenuManager.OpenMenu();
             }
         }
 

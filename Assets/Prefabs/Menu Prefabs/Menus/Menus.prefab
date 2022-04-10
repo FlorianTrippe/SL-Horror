@@ -1764,7 +1764,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &1301357007705718908
 MonoBehaviour:
@@ -2315,6 +2315,8 @@ MonoBehaviour:
     DeclineButton: {fileID: 2759543568093303585}
   - PopUp: {fileID: 2806172673025673358}
     DeclineButton: {fileID: 5785610002589580026}
+  _playerInput: {fileID: -944628639613478452, guid: 429e04dab9a7ea64bb509aca52cb62ff,
+    type: 3}
 --- !u!1 &1301357008332589183
 GameObject:
   m_ObjectHideFlags: 0

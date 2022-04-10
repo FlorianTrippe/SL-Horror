@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using GameSettings;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class PauseMenuManager : MonoBehaviour
@@ -41,9 +42,22 @@ public class PauseMenuManager : MonoBehaviour
         }
     }
 
-    private void OpenMenu()
+    public void OpenMenu()
     {
-        _pauseMenu.SetActive(true);
+        if (_pauseMenu.activeSelf)
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            _pauseMenu.SetActive(false);
+            Time.timeScale = 1f;
+        }
+        else
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            _pauseMenu.SetActive(true);
+            Time.timeScale = 0f;
+        }
     }
 }
 
