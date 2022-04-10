@@ -241,6 +241,7 @@ public class CableScripts : MonoBehaviour
     }
     public void EquipLastItem()
     {
+        _flashLightLight.enabled = false;
         _anim.SetBool("ChargerAway", true);
         _anim.SetBool("ChargerOut", false);
         _player.ReadyToCharge = false;
