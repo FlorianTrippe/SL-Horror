@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using BehaviorDesigner.Runtime.Tasks.Unity.UnityQuaternion;
 using UnityEngine;
 using DG.Tweening;
@@ -12,7 +13,7 @@ public class CableScripts : MonoBehaviour
     [SerializeField] private LayerMask _interactableLayerMask;
     [SerializeField] private GameObject _bonfireKey;
     [SerializeField] private GameObject _itemSpawnPoint;
-    [SerializeField] private GameObject _enemy;
+    [SerializeField] private GameObject[] _geigerTargetArray;
     [SerializeField] private ExamplePlayer _player;
     [SerializeField] private GameObject Camera;
     [SerializeField] private GameObject _zeigerVater;
@@ -92,7 +93,9 @@ public class CableScripts : MonoBehaviour
         {
             _geigerOnOff.SetActive(true);
             totalChargeDrain += _geigerChargeDrain;
-            float distance = Vector3.Distance(transform.position, _enemy.transform.position);
+            float distance = Vector3.Distance(transform.position, _geigerTargetArray[0].transform.position);
+
+            distance = _geigerTargetArray.Select(obj => Vector3.Distance(transform.position, obj.transform.position)).Prepend(distance).Min();
 
             if (_geigerMinDistance >= distance)
             {
