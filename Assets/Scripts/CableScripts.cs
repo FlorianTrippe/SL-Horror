@@ -35,6 +35,7 @@ public class CableScripts : MonoBehaviour
     [SerializeField] private float _filterDrain;
     [SerializeField] private float _timerWithoutFilter;
     [SerializeField] private Slider _filterSlider;
+    [SerializeField] private GameObject _vignette;
 
     [Header("Noise")]
     [SerializeField] private float _bonfireDropSoundFallOffDistance;
@@ -52,6 +53,7 @@ public class CableScripts : MonoBehaviour
     private bool _hasCharger;
     private bool _hasFlashLight;
     private bool _hasGeiger;
+    private bool _hasGasMask;
     private bool _chargingOwnBattery = true;
     private bool _geigerEquipped;
 
@@ -227,28 +229,30 @@ public class CableScripts : MonoBehaviour
     }
     public void ChangeFilter()
     {
-        NoiseManager.NoiseManagerReference.SetNoise(transform.position, false, _filterChangeSoundFallOffDistance);
-        if (_filterCount > 0)
+        if (_hasGasMask)
         {
-            DropKey();
-            if (_equippedItem != ItemType.BonfireKey && _equippedItem != ItemType.Charger && _equippedItem != ItemType.Filter)
-                _lastEquippedItem = _equippedItem;
-            _equippedItem = ItemType.Filter;
-            FilterState = _maxFilterCharge;
-            _time = 0f;
-            //TODO: hide / unhide Object
-            UpdateItem();
-        }
-        else
-        {
-            //You are fucked
+            NoiseManager.NoiseManagerReference.SetNoise(transform.position, false, _filterChangeSoundFallOffDistance);
+            if (_filterCount > 0)
+            {
+                DropKey();
+                if (_equippedItem != ItemType.BonfireKey && _equippedItem != ItemType.Charger && _equippedItem != ItemType.Filter)
+                    _lastEquippedItem = _equippedItem;
+                _equippedItem = ItemType.Filter;
+                FilterState = _maxFilterCharge;
+                _time = 0f;
+                //TODO: hide / unhide Object
+                UpdateItem();
+            }
+            else
+            {
+                //You are fucked
+            }
         }
     }
     public void PlayFootstepSound()
     {
         SFXManager.Instance.PlayClip(SFXManager.Instance.Steps[0]);
     }
-    
     public void EquipFlashLight()
     {
         if (_hasFlashLight)
@@ -328,8 +332,12 @@ public class CableScripts : MonoBehaviour
                 _hasGeiger = true;
                 break;
             case ItemType.Filter:
-                _filterSlider.enabled = true;
                 _filterCount++;
+                break;
+            case ItemType.GasMask:
+                _filterSlider.enabled = true;
+                _vignette.SetActive(true);
+                _hasGasMask = true;
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(type), type, null);

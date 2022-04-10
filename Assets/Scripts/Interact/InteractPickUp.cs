@@ -9,7 +9,8 @@ public enum ItemType
     Charger,
     FlashLight,
     Geiger,
-    Filter
+    Filter,
+    GasMask
 }
 public class InteractPickUp : Interactable
 {

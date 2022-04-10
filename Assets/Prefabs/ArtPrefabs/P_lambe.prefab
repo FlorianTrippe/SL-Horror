@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 5661639799729499740}
   - component: {fileID: 8736408180761305593}
   - component: {fileID: 6834498007330247987}
-  m_Layer: 0
+  - component: {fileID: 1453208407339396611}
+  - component: {fileID: 1294391733261338562}
+  m_Layer: 3
   m_Name: P_lambe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,3 +85,30 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1453208407339396611
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5033335302411220198}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.006153317, y: 0.014227222, z: 0.01204244}
+  m_Center: {x: 3.4924597e-10, y: -0.0016823438, z: 0.0020869798}
+--- !u!114 &1294391733261338562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5033335302411220198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 781e642ed2c8d2c4bafe9c29a9e0ea83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _thisObject: {fileID: 0}
+  type: 3

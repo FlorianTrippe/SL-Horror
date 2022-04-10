@@ -369,7 +369,7 @@ MonoBehaviour:
   _itemSpawnPoint: {fileID: 0}
   _enemy: {fileID: 0}
   _player: {fileID: 0}
-  Camera: {fileID: 0}
+  Camera: {fileID: 6697480112458453146}
   _zeigerVater: {fileID: 0}
   _maxRotation: {x: 0, y: 0, z: 0}
   _geigerChargeDrain: 0
@@ -383,6 +383,7 @@ MonoBehaviour:
   _filterDrain: 0
   _timerWithoutFilter: 0
   _filterSlider: {fileID: 6434859179994536437}
+  _vignette: {fileID: 0}
   _bonfireDropSoundFallOffDistance: 0
   _chargeSoundFallOffDistance: 0
   _geigerSoundFallOffDistance: 0
@@ -1782,3 +1783,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51e471ce699aaf343b136f13e2733b50, type: 3}
+--- !u!1 &6697480112458453146 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2394727140803501180, guid: 51e471ce699aaf343b136f13e2733b50,
+    type: 3}
+  m_PrefabInstance: {fileID: 9064053939632082150}
+  m_PrefabAsset: {fileID: 0}
