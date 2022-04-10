@@ -119,10 +119,11 @@ public class CableScripts : MonoBehaviour
         if (_equippedItem == ItemType.FlashLight && !_itemOn)
         {
             _flashLightLight.enabled = false;
-            _flashLightLight.intensity = ChargingState / _maxCharge * _maxFlashLightLightIntensity;
         }
         else if (_equippedItem == ItemType.FlashLight && _itemOn)
         {
+            _flashLightLight.enabled = true;
+            _flashLightLight.intensity = ChargingState / _maxCharge * _maxFlashLightLightIntensity;
             totalChargeDrain += _flashLightChargeDrain;
         }
 
