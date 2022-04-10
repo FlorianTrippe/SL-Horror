@@ -259,23 +259,26 @@ MonoBehaviour:
   _zeigerVater: {fileID: 0}
   _maxRotation: {x: 0, y: 0, z: 0}
   _anim: {fileID: 2181633657069193307}
+  _deathCanvas: {fileID: 0}
+  _youDiedSFX: {fileID: 0}
+  _youDiedAnimator: {fileID: 0}
   _geigerChargeDrain: 2
   _geigerSoundTime: 1
-  _geigerMinDistance: 100
+  _geigerMinDistance: 50
   _geigerOnOff: {fileID: 3463011697068712100}
   _geigerLight: {fileID: 3408186416239220523}
   _flashLightChargeDrain: 2
   _maxFlashLightLightIntensity: 6
   _flashLightLight: {fileID: 1778183819585410184}
-  _maxFilterCharge: 0
-  _filterDrain: 0
-  _timerWithoutFilter: 0
+  _maxFilterCharge: 1000
+  _filterDrain: 4
+  _timerWithoutFilter: 2
   _filterSlider: {fileID: 6434859179994536437}
   _vignette: {fileID: 4365880104956198729}
   _bonfireDropSoundFallOffDistance: 0
-  _chargeSoundFallOffDistance: 0
-  _geigerSoundFallOffDistance: 0
-  _filterChangeSoundFallOffDistance: 0
+  _chargeSoundFallOffDistance: 25
+  _geigerSoundFallOffDistance: 5
+  _filterChangeSoundFallOffDistance: 10
   _chargingSpeed: 100
   _chargingDrain: 2
   _maxCharge: 1000

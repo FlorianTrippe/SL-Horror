@@ -244,9 +244,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Motor: {fileID: 144967662403683561}
-  MaxStableCrouchSpeed: 5
-  MaxStableMoveSpeed: 10
-  MaxStableRunSpeed: 20
+  MaxStableCrouchSpeed: 1.5
+  MaxStableMoveSpeed: 3
+  MaxStableRunSpeed: 5
   StableMovementSharpness: 15
   OrientationSharpness: 20
   OrientationMethod: 1
