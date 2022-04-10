@@ -12,6 +12,7 @@ public class EcchiEnemy : MonoBehaviour
     [SerializeField] private Sight _sightTrigger;
     [SerializeField] private LayerMask _sightLayerMask;
     [SerializeField] private GameObject _targetTarget;
+    [SerializeField] private GameObject _attackCollider;
 
     public GameObject Obj;
 
@@ -68,6 +69,15 @@ public class EcchiEnemy : MonoBehaviour
     public Vector3 CheckForNoiseLocation()
     {
         return NoiseManager.NoiseManagerReference.NoiseLocation();
+    }
+
+    public void StartAttack()
+    {
+        _attackCollider.SetActive(true);
+    }
+    public void StopAttack()
+    {
+        _attackCollider.SetActive(false);
     }
 
     void FixedUpdate()
