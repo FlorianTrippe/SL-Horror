@@ -15,12 +15,12 @@ MonoBehaviour:
   resolutionValue: 0
   windowModeValue: 0
   brightnessValue: 0
-  renderDistanceValue: 1125
+  renderDistanceValue: 1500
   vSyncValue: 0
-  antiAliasingValue: 2
-  shadowQualityValue: 2
+  antiAliasingValue: 7
+  shadowQualityValue: 0
   softShadowsValue: 0
-  textureQualityValue: 2
+  textureQualityValue: 0
   anisotropicTexturesValue: 1
   softParticlesValue: 0
   realtimeReflectionProbesValue: 0
@@ -29,3 +29,5 @@ MonoBehaviour:
   lODBiasValue: 2
   particleRaycastBudgetValue: 3
   mouseSensivityValue: 0.1
+  mouseXInvertValue: 0
+  mouseYInvertValue: 0

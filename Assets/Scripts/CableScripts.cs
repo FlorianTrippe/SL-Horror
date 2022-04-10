@@ -19,7 +19,9 @@ public class CableScripts : MonoBehaviour
     [SerializeField] private GameObject _zeigerVater;
     [SerializeField] private Vector3 _maxRotation;
     [SerializeField] private Animator _anim;
-
+    [SerializeField] private GameObject _deathCanvas;
+    [SerializeField] private GameObject _youDiedSFX;
+    [SerializeField] private Animator _youDiedAnimator;
 
     [Header("Geiger Counter")]
     [SerializeField] private float _geigerChargeDrain;
@@ -207,14 +209,26 @@ public class CableScripts : MonoBehaviour
     {
         if(collision.gameObject.tag == "Enemy")
         {
+            StartCoroutine("WaitHalfSecond");
             Respawn();
             //TODO Leben abziehen etc
         }
     }
+
+    private IEnumerator WaitHalfSecond()
+    {
+        yield return new WaitForSeconds(0.5f);
+        _deathCanvas.SetActive(true);
+        _youDiedSFX.SetActive(true);
+        _youDiedAnimator.SetTrigger("Died");
+    }
+
     public void Respawn()
     {
         if (_lastBonfire != null)
         {
+            _deathCanvas.SetActive(false);
+            _youDiedSFX.SetActive(false);
             gameObject.transform.parent.transform.position = _lastBonfire.transform.GetChild(0).transform.position;
         }
     }
