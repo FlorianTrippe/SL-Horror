@@ -23,6 +23,7 @@ public class CableScripts : MonoBehaviour
     [SerializeField] private float _geigerChargeDrain;
     [SerializeField] private float _geigerSoundTime;
     [SerializeField] private float _geigerMinDistance;
+    [SerializeField] private GameObject _geigerOnOff;
 
     [Header("Flash Light")]
     [SerializeField] private float _flashLightChargeDrain;
@@ -86,6 +87,7 @@ public class CableScripts : MonoBehaviour
         float totalChargeDrain = _chargingDrain;
         if (_geigerEquipped && _itemOn)
         {
+            _geigerOnOff.SetActive(true);
             totalChargeDrain += _geigerChargeDrain;
             float distance = Vector3.Distance(transform.position, _enemy.transform.position);
 
@@ -105,6 +107,10 @@ public class CableScripts : MonoBehaviour
                 }
             }
             //trigger Sound / move indicator
+        }
+        else if(_geigerEquipped && !_itemOn)
+        {
+            _geigerOnOff.SetActive(false);
         }
 
         if (_equippedItem == ItemType.FlashLight && !_itemOn)

@@ -85,9 +85,6 @@ namespace KinematicCharacterController.Examples
             }
            */
         }
-
-
- 
         public void InputLook(InputAction.CallbackContext context)
         {
             Vector2 MouseDelta = context.ReadValue<Vector2>();
@@ -247,10 +244,10 @@ namespace KinematicCharacterController.Examples
         }
         public void InputSwitchMaskFilters(InputAction.CallbackContext context)
         {
-            
             if (context.phase == InputActionPhase.Performed)
             {
                 _anim.SetBool("Reload", true);
+                CableScript.ChangeFilter();
                 CableScript.DropKey();
                 
             }
@@ -259,6 +256,20 @@ namespace KinematicCharacterController.Examples
                 _anim.SetBool("Reload", false);
             }
             
+        }
+        public void InputTurnOnOff(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Performed)
+            {
+                CableScript.TurnOnOFF();
+            }
+        }
+        public void Menu(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Performed)
+            {
+                //TODO: Leon Menu
+            }
         }
 
         private void HandleCameraInput()

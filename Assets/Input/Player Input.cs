@@ -143,6 +143,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Menu"",
+                    ""type"": ""Button"",
+                    ""id"": ""18352ab4-e666-4470-9a38-6fb6a2569422"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -332,6 +341,17 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""On / Off"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b7c8f28e-93fd-41c7-b4e6-a85ef93b7cc5"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PlayerControlScheme"",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -380,6 +400,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_PlayerActionMap_Geiger = m_PlayerActionMap.FindAction("Geiger", throwIfNotFound: true);
         m_PlayerActionMap_FlashLight = m_PlayerActionMap.FindAction("FlashLight", throwIfNotFound: true);
         m_PlayerActionMap_OnOff = m_PlayerActionMap.FindAction("On / Off", throwIfNotFound: true);
+        m_PlayerActionMap_Menu = m_PlayerActionMap.FindAction("Menu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -452,6 +473,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActionMap_Geiger;
     private readonly InputAction m_PlayerActionMap_FlashLight;
     private readonly InputAction m_PlayerActionMap_OnOff;
+    private readonly InputAction m_PlayerActionMap_Menu;
     public struct PlayerActionMapActions
     {
         private @PlayerInput m_Wrapper;
@@ -469,6 +491,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @Geiger => m_Wrapper.m_PlayerActionMap_Geiger;
         public InputAction @FlashLight => m_Wrapper.m_PlayerActionMap_FlashLight;
         public InputAction @OnOff => m_Wrapper.m_PlayerActionMap_OnOff;
+        public InputAction @Menu => m_Wrapper.m_PlayerActionMap_Menu;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -517,6 +540,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @OnOff.started -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnOnOff;
                 @OnOff.performed -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnOnOff;
                 @OnOff.canceled -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnOnOff;
+                @Menu.started -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnMenu;
+                @Menu.performed -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnMenu;
+                @Menu.canceled -= m_Wrapper.m_PlayerActionMapActionsCallbackInterface.OnMenu;
             }
             m_Wrapper.m_PlayerActionMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -560,6 +586,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @OnOff.started += instance.OnOnOff;
                 @OnOff.performed += instance.OnOnOff;
                 @OnOff.canceled += instance.OnOnOff;
+                @Menu.started += instance.OnMenu;
+                @Menu.performed += instance.OnMenu;
+                @Menu.canceled += instance.OnMenu;
             }
         }
     }
@@ -588,5 +617,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnGeiger(InputAction.CallbackContext context);
         void OnFlashLight(InputAction.CallbackContext context);
         void OnOnOff(InputAction.CallbackContext context);
+        void OnMenu(InputAction.CallbackContext context);
     }
 }
