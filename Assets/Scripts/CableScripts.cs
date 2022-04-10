@@ -54,7 +54,7 @@ public class CableScripts : MonoBehaviour
     private bool _hasCharger;
     private bool _hasFlashLight;
     private bool _hasGeiger;
-    private bool _hasGasMask;
+    public bool HasGasMask;
     private bool _chargingOwnBattery = true;
     private bool _geigerEquipped;
 
@@ -260,7 +260,7 @@ public class CableScripts : MonoBehaviour
     }
     public void ChangeFilter()
     {
-        if (_hasGasMask)
+        if (HasGasMask)
         {
             NoiseManager.NoiseManagerReference.SetNoise(transform.position, false, _filterChangeSoundFallOffDistance);
             if (_filterCount > 0)
@@ -386,7 +386,7 @@ public class CableScripts : MonoBehaviour
             case ItemType.GasMask:
                 _filterSlider.enabled = true;
                 _vignette.SetActive(true);
-                _hasGasMask = true;
+                HasGasMask = true;
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(type), type, null);

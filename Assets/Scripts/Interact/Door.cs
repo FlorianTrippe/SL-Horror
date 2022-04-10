@@ -7,6 +7,7 @@ public class Door : Interactable
     private Vector3 _startPosition;
     public Animator Anim;
     public bool TutorialDoor;
+    public CableScripts Player;
 
 
     // Start is called before the first frame update
@@ -29,6 +30,10 @@ public class Door : Interactable
                 Anim.SetBool("Opening", true);
             else
                 Anim.SetBool("Opening", false);
+        }
+        else if (Player.HasGasMask)
+        {
+            Anim.SetBool("Opening", true);
         }
     }
 
