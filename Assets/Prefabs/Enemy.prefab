@@ -994,7 +994,7 @@ GameObject:
   - component: {fileID: 7565956813781352551}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1076,7 +1076,7 @@ MonoBehaviour:
         byteDataArray: 
       Version: 
   gizmoViewMode: 0
-  showBehaviorDesignerGizmo: 1
+  showBehaviorDesignerGizmo: 0
 --- !u!195 &6424964491952054998
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1133,6 +1133,8 @@ MonoBehaviour:
   _sightLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  _targetTarget: {fileID: 0}
+  Obj: {fileID: 0}
 --- !u!1 &6548805906382652719
 GameObject:
   m_ObjectHideFlags: 0

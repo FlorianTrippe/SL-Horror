@@ -195,6 +195,23 @@ public class CableScripts : MonoBehaviour
             _zeigerVater.transform.rotation = new Quaternion(0, _maxRotation.y/prozent, 0,0);
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Enemy")
+        {
+            Respawn();
+            //TODO Leben abziehen etc
+        }
+    }
+
+    public void Respawn()
+    {
+        if (_lastBonfire != null)
+        {
+            gameObject.transform.parent.transform.position = _lastBonfire.transform.GetChild(0).transform.position;
+        }
+    }
     public void ChargingOtherBattery(GameObject battery)
     {
         _player.ReadyToCharge = true;
