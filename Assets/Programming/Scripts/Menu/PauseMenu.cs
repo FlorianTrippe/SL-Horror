@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
     [Header("Buttons")] 
+    [SerializeField] private Button _resumeButton;
     [SerializeField] private Button _settingsButton;
+    [SerializeField] private Button _mainMenuButton;
 
     [Header("PopUp")] 
     [SerializeField] private GameObject _popUp;
@@ -52,10 +55,19 @@ public class PauseMenu : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    // Main Menu
+    private void MainMenu()
+    {
+        gameObject.SetActive(false);
+        SceneManager.LoadScene("S_Menu_Testing");
+    }
+
     // Assign Button Events
     private void AssignButtonEvents()
     {
+        _resumeButton.onClick.AddListener(delegate { Resume(); });
         _settingsButton.onClick.AddListener(delegate { Settings(); });
+        _mainMenuButton.onClick.AddListener(delegate { MainMenu(); });
     }
 
     private void Start()

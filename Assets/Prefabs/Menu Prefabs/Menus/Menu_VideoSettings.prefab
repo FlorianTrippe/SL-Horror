@@ -1229,13 +1229,8 @@ MonoBehaviour:
   _renderDistanceSlider:
     Slider: {fileID: 9023140633673943643}
     TextSlider: {fileID: 6070881227389600113}
-    MaxSliderValue: 750
-    MinSliderValue: 1500
-  _mouseSensivitySlider:
-    Slider: {fileID: 0}
-    TextSlider: {fileID: 0}
-    MaxSliderValue: 0
-    MinSliderValue: 0
+    MaxSliderValue: 1500
+    MinSliderValue: 750
   _vSyncToggle: {fileID: 4831471674177422413}
   _softShadowsToggle: {fileID: 330822902745427380}
   _softParticlesToggle: {fileID: 8031513511738281859}

@@ -25,7 +25,7 @@ public class LoadManager : MonoBehaviour
     [SerializeField] private VideoSettings _videoMenu;
     
     private FullScreenMode _screenMode;
-    private ExamplePlayer _player;
+    //private ExamplePlayer _player;
     
     private void Start()
     {
