@@ -21,6 +21,8 @@ public class CableScripts : MonoBehaviour
 
     [Header("Geiger Counter")]
     [SerializeField] private float _geigerChargeDrain;
+    [SerializeField] private float _geigerSoundTime;
+    [SerializeField] private float _geigerMinDistance;
 
     [Header("Flash Light")]
     [SerializeField] private float _flashLightChargeDrain;
@@ -66,6 +68,7 @@ public class CableScripts : MonoBehaviour
 
     private bool _itemOn;
     private float _time;
+    private float _geigerTime;
 
     // Start is called before the first frame update
     void Start()
@@ -85,6 +88,21 @@ public class CableScripts : MonoBehaviour
         {
             totalChargeDrain += _geigerChargeDrain;
             float distance = Vector3.Distance(transform.position, _enemy.transform.position);
+
+            if (_geigerMinDistance >= distance)
+            {
+                float time = distance / _geigerMinDistance * _geigerSoundTime;
+
+                if (_geigerTime < time)
+                {
+                    _geigerTime += Time.deltaTime;
+                }
+                else
+                {
+                    _geigerTime = 0;
+                    //TODO: Play Sound
+                }
+            }
             //trigger Sound / move indicator
         }
 
