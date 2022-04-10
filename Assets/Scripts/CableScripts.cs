@@ -14,6 +14,7 @@ public class CableScripts : MonoBehaviour
     [SerializeField] private GameObject _bonfireKey;
     [SerializeField] private GameObject _itemSpawnPoint;
     [SerializeField] private GameObject[] _geigerTargetArray;
+    [SerializeField] private GameObject _enemy;
     [SerializeField] private ExamplePlayer _player;
     [SerializeField] private GameObject Camera;
     [SerializeField] private GameObject _zeigerVater;
@@ -91,6 +92,11 @@ public class CableScripts : MonoBehaviour
 
     private void Update()
     {
+        if (Vector3.Distance(_enemy.transform.position, transform.position)<= 1)
+        {
+            StartCoroutine("WaitHalfSecond");
+        }
+
         float totalChargeDrain = _chargingDrain;
         if (_geigerEquipped && _itemOn)
         {
@@ -205,12 +211,11 @@ public class CableScripts : MonoBehaviour
             _zeigerVater.transform.rotation = new Quaternion(0, _maxRotation.y/prozent, 0,0);
         }
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if(collision.gameObject.tag == "Enemy")
+        if(other.gameObject.tag == "Enemy")
         {
             StartCoroutine("WaitHalfSecond");
-            Respawn();
             //TODO Leben abziehen etc
         }
     }
@@ -221,6 +226,7 @@ public class CableScripts : MonoBehaviour
         _deathCanvas.SetActive(true);
         _youDiedSFX.SetActive(true);
         _youDiedAnimator.SetTrigger("Died");
+        // Respawn();
     }
 
     public void Respawn()
