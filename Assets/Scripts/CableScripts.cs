@@ -17,7 +17,8 @@ public class CableScripts : MonoBehaviour
     [SerializeField] private GameObject Camera;
     [SerializeField] private GameObject _zeigerVater;
     [SerializeField] private Vector3 _maxRotation;
-    
+    [SerializeField] private Animator _anim;
+
 
     [Header("Geiger Counter")]
     [SerializeField] private float _geigerChargeDrain;
@@ -222,9 +223,22 @@ public class CableScripts : MonoBehaviour
     }
     public void EquipLastItem()
     {
+        _anim.SetBool("ChargerAway", true);
+        _anim.SetBool("ChargerOut", false);
         _player.ReadyToCharge = false;
         _otherBattery = null;
         _equippedItem = _lastEquippedItem;
+        switch (_equippedItem)
+        {
+            case ItemType.FlashLight:
+                EquipFlashLight();
+                break;
+            case ItemType.Geiger:
+                EquipGeiger();
+                break;
+            default:
+                break;
+        }
         UpdateItem();
     }
     public void ChangeFilter()
@@ -234,6 +248,7 @@ public class CableScripts : MonoBehaviour
             NoiseManager.NoiseManagerReference.SetNoise(transform.position, false, _filterChangeSoundFallOffDistance);
             if (_filterCount > 0)
             {
+                _anim.SetBool("Reload", true);
                 DropKey();
                 if (_equippedItem != ItemType.BonfireKey && _equippedItem != ItemType.Charger && _equippedItem != ItemType.Filter)
                     _lastEquippedItem = _equippedItem;
@@ -257,6 +272,8 @@ public class CableScripts : MonoBehaviour
     {
         if (_hasFlashLight)
         {
+            _anim.SetBool("LampAway", !_anim.GetBool("LampAway"));
+            _anim.SetBool("LampOut", !_anim.GetBool("LampOut"));
             DropKey();
             if (_equippedItem != ItemType.BonfireKey && _equippedItem != ItemType.Charger && _equippedItem != ItemType.Filter)
                 _lastEquippedItem = _equippedItem;
@@ -269,6 +286,8 @@ public class CableScripts : MonoBehaviour
     {
         if (_hasGeiger)
         {
+            _anim.SetBool("GeigerIn", !_anim.GetBool("GeigerIn"));
+            _anim.SetBool("GeigerOut", !_anim.GetBool("GeigerOut"));
             DropKey();
             if (_equippedItem != ItemType.BonfireKey && _equippedItem != ItemType.Charger && _equippedItem != ItemType.Filter)
                 _lastEquippedItem = _equippedItem;
@@ -281,6 +300,8 @@ public class CableScripts : MonoBehaviour
     {
         if (_hasCharger)
         {
+            _anim.SetBool("ChargerAway", !_anim.GetBool("ChargerAway"));
+            _anim.SetBool("ChargerOut", !_anim.GetBool("ChargerOut"));
             DropKey();
             if (_equippedItem != ItemType.BonfireKey && _equippedItem != ItemType.Charger && _equippedItem != ItemType.Filter)
                 _lastEquippedItem = _equippedItem;
@@ -293,8 +314,9 @@ public class CableScripts : MonoBehaviour
     {
         if (_hasBonfireKey)
         {
+            _anim.SetBool("KeyPickUp", false);
+            _anim.SetBool("KeyPutAway", true);
             NoiseManager.NoiseManagerReference.SetNoise(transform.position, false, _bonfireDropSoundFallOffDistance);
-            Destroy(_itemSpawnPoint.transform.GetChild(_itemSpawnPoint.transform.childCount - 1).gameObject);
             _hasBonfireKey = false;
             Instantiate(_bonfireKey, transform.position, Quaternion.identity);
             _equippedItem = _lastEquippedItem;
@@ -307,8 +329,18 @@ public class CableScripts : MonoBehaviour
             return;
 
         _hasBonfireKey = true;
-        GameObject obj = Instantiate(_bonfireKey, _itemSpawnPoint.transform);//TODO: hide / unhide Object
-        obj.GetComponent<Collider>().enabled = false;
+
+        _anim.SetBool("ChargerOut", false);
+        _anim.SetBool("GeigerOut", false);
+        _anim.SetBool("LampOut", false);
+
+        _anim.SetBool("ChargerAway", true);
+        _anim.SetBool("GeigerIn", true);
+        _anim.SetBool("LampAway", true);
+
+        _anim.SetBool("KeyPickUp", true);
+        _anim.SetBool("KeyPutAway", false);
+
         if (_equippedItem != ItemType.BonfireKey && _equippedItem != ItemType.Charger && _equippedItem != ItemType.Filter)
             _lastEquippedItem = _equippedItem;
         _equippedItem = ItemType.BonfireKey;
@@ -345,8 +377,8 @@ public class CableScripts : MonoBehaviour
     }
     public void Interact()
     {
-        Debug.DrawRay(Camera.transform.position,Camera.transform.forward * 1.5f,Color.green);
-        if (Physics.Raycast(Camera.transform.position, Camera.transform.forward, out RaycastHit hit, 1.5f, _interactableLayerMask))
+        Debug.DrawRay(Camera.transform.position,Camera.transform.forward * 2f,Color.green);
+        if (Physics.Raycast(Camera.transform.position, Camera.transform.forward, out RaycastHit hit, 2f, _interactableLayerMask))
         {
             Interactable interact = hit.transform.gameObject.GetComponent<Interactable>();
             interact.Interact(this.gameObject);
