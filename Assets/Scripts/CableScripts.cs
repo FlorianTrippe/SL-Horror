@@ -319,6 +319,12 @@ public class CableScripts : MonoBehaviour
     {
         if (_hasCharger)
         {
+            _anim.SetBool("GeigerOut", false);
+            _anim.SetBool("LampOut", false);
+
+            _anim.SetBool("GeigerIn", true);
+            _anim.SetBool("LampAway", true);
+
             _anim.SetBool("ChargerAway", !_anim.GetBool("ChargerAway"));
             _anim.SetBool("ChargerOut", !_anim.GetBool("ChargerOut"));
             DropKey();
