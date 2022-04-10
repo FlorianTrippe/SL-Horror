@@ -231,7 +231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _thisObject: {fileID: 0}
-  type: 0
+  type: 1
 --- !u!1 &1596968131026808636
 GameObject:
   m_ObjectHideFlags: 0

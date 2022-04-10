@@ -6,7 +6,7 @@ public class BonFireDing : Interactable
 {
     [SerializeField] private GameObject _key;
 
-    private bool _activated;
+    [SerializeField] private bool _activated;
 
     public override void Interact(GameObject player)
     {
