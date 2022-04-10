@@ -26,6 +26,7 @@ public class CableScripts : MonoBehaviour
     [SerializeField] private float _geigerSoundTime;
     [SerializeField] private float _geigerMinDistance;
     [SerializeField] private GameObject _geigerOnOff;
+    [SerializeField] private Light _geigerLight;
 
     [Header("Flash Light")]
     [SerializeField] private float _flashLightChargeDrain;
@@ -56,7 +57,6 @@ public class CableScripts : MonoBehaviour
     private bool _hasFlashLight;
     private bool _hasGeiger;
     public bool HasGasMask;
-    private bool _chargingOwnBattery = true;
     private bool _geigerEquipped;
 
     private int _filterCount;
@@ -67,9 +67,10 @@ public class CableScripts : MonoBehaviour
     private ItemType _equippedItem;
     private ItemType _lastEquippedItem;
     private GameObject _lastBonfire;
-    private GameObject _otherBattery;
+    [HideInInspector] public GameObject OtherBattery;
 
     [HideInInspector] public bool CanCharge = true;
+    [HideInInspector] public bool ChargingOwnBattery = true;
 
     private bool _itemOn;
     private float _time;
@@ -104,10 +105,12 @@ public class CableScripts : MonoBehaviour
                 if (_geigerTime < time)
                 {
                     _geigerTime += Time.deltaTime;
+                    _geigerLight.enabled = false;
                 }
                 else
                 {
                     _geigerTime = 0;
+                    _geigerLight.enabled = true;
                     SFXManager.Instance.PlayClip(SFXManager.Instance.SFXList[0]);
                     //TODO: Play Sound
                 }
@@ -200,7 +203,6 @@ public class CableScripts : MonoBehaviour
             _zeigerVater.transform.rotation = new Quaternion(0, _maxRotation.y/prozent, 0,0);
         }
     }
-
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag == "Enemy")
@@ -209,7 +211,6 @@ public class CableScripts : MonoBehaviour
             //TODO Leben abziehen etc
         }
     }
-
     public void Respawn()
     {
         if (_lastBonfire != null)
@@ -220,8 +221,8 @@ public class CableScripts : MonoBehaviour
     public void ChargingOtherBattery(GameObject battery)
     {
         _player.ReadyToCharge = true;
-        _chargingOwnBattery = false;
-        _otherBattery = battery;
+        ChargingOwnBattery = false;
+        OtherBattery = battery;
         EquipCharger();
     }
     public void Charge()
@@ -229,7 +230,7 @@ public class CableScripts : MonoBehaviour
         if (CanCharge)
         {
             NoiseManager.NoiseManagerReference.SetNoise(transform.position, false, _chargeSoundFallOffDistance);
-            if (_chargingOwnBattery)
+            if (ChargingOwnBattery)
             {
                 ChargingState += _chargingSpeed;
                 if (ChargingState >= _maxCharge)
@@ -237,7 +238,7 @@ public class CableScripts : MonoBehaviour
             }
             else
             {
-                Battery battery = _otherBattery.GetComponent<Battery>();
+                Battery battery = OtherBattery.GetComponent<Battery>();
                 battery.Charge();
             }
         }
@@ -245,10 +246,11 @@ public class CableScripts : MonoBehaviour
     public void EquipLastItem()
     {
         _flashLightLight.enabled = false;
+        _geigerLight.enabled = false;
         _anim.SetBool("ChargerAway", true);
         _anim.SetBool("ChargerOut", false);
         _player.ReadyToCharge = false;
-        _otherBattery = null;
+        OtherBattery = null;
         _equippedItem = _lastEquippedItem;
         switch (_equippedItem)
         {

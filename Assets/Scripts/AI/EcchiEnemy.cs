@@ -72,7 +72,6 @@ public class EcchiEnemy : MonoBehaviour
 
     void FixedUpdate()
     {
-
     }
 
     void Update()

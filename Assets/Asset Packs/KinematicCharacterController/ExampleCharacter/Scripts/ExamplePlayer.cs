@@ -78,16 +78,14 @@ namespace KinematicCharacterController.Examples
         public void InputMove(InputAction.CallbackContext context)
         {
             _moveVector = context.ReadValue<Vector2>();
-           /*
-            if(context.phase == InputActionPhase.Performed)
+            if (!CableScript.ChargingOwnBattery)
             {
-                _playerSteps.SetBool("IsWalking", true);
+                CableScript.EquipCharger();
+                CableScript.ChargingOwnBattery = true;
+                Battery battery = CableScript.OtherBattery.GetComponent<Battery>();
+                battery.StopCharge();
+                CableScript.OtherBattery = null;
             }
-            if(context.phase == InputActionPhase.Canceled)
-            {
-                _playerSteps.SetBool("IsWalking", false);
-            }
-           */
         }
         public void InputLook(InputAction.CallbackContext context)
         {

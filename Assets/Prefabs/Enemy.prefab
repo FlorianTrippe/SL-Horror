@@ -1027,7 +1027,7 @@ Animator:
   m_GameObject: {fileID: 6424964491952054997}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 44547daecfcdd194ba4ecb4bf5b66bbd, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3e5a3b65ee539b54bbf597e19ec4714f, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -1128,7 +1128,7 @@ MonoBehaviour:
   _behaviorTree: {fileID: 6424964491952054999}
   _sightCone: {fileID: 8984128103662867918}
   _sightAngle: 75
-  _sightDistance: 6
+  _sightDistance: 15
   _sightTrigger: {fileID: 5403248822917974267}
   _sightLayerMask:
     serializedVersion: 2
