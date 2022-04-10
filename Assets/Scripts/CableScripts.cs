@@ -92,8 +92,9 @@ public class CableScripts : MonoBehaviour
 
     private void Update()
     {
-        if (Vector3.Distance(_enemy.transform.position, transform.position)<= 1)
+        if (Vector3.Distance(_enemy.transform.position, transform.position) <= 2)
         {
+            Debug.Log("Gefunden");
             StartCoroutine("WaitHalfSecond");
         }
 
@@ -211,14 +212,16 @@ public class CableScripts : MonoBehaviour
             _zeigerVater.transform.rotation = new Quaternion(0, _maxRotation.y/prozent, 0,0);
         }
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.tag == "Enemy")
-        {
-            StartCoroutine("WaitHalfSecond");
-            //TODO Leben abziehen etc
-        }
-    }
+    //private void OnCollisionEnter(Collision other)
+    //{
+    //    Debug.Log(other.gameObject.name);
+
+    //    if(other.gameObject.name == "Enemy")
+    //    {
+    //        StartCoroutine("WaitHalfSecond");
+    //        //TODO Leben abziehen etc
+    //    }
+    //}
 
     private IEnumerator WaitHalfSecond()
     {
@@ -226,7 +229,8 @@ public class CableScripts : MonoBehaviour
         _deathCanvas.SetActive(true);
         _youDiedSFX.SetActive(true);
         _youDiedAnimator.SetTrigger("Died");
-        // Respawn();
+        yield return new WaitForSeconds(7f);
+        Respawn();
     }
 
     public void Respawn()
