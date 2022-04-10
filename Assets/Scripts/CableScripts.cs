@@ -201,7 +201,12 @@ public class CableScripts : MonoBehaviour
     }
     public void PlaceBonFireKey()
     {
-
+        _anim.SetBool("KeyPickUp", false);
+        _anim.SetBool("KeyPutAway", true);
+        NoiseManager.NoiseManagerReference.SetNoise(transform.position, false, _bonfireDropSoundFallOffDistance);
+        _hasBonfireKey = false;
+        _equippedItem = _lastEquippedItem;
+        UpdateItem();
     }
     private void ChargeUpdate()
     {
@@ -444,8 +449,8 @@ public class CableScripts : MonoBehaviour
     }
     public void HoldInteract()
     {
-        Debug.DrawRay(transform.position, transform.forward * 1.5f, Color.green);
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 1.5f, _interactableLayerMask))
+        Debug.DrawRay(transform.position, transform.forward * 1.5f, Color.blue);
+        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 2f, _interactableLayerMask))
         {
             if (hit.transform.gameObject.TryGetComponent(out BonFireDing fire))
             {

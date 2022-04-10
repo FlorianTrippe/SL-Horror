@@ -1,12 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
 
 public class BonFireDing : Interactable
 {
     [SerializeField] private GameObject _key;
 
     [SerializeField] private bool _activated;
+
+    public UnityEvent<InteractionEventArgs> InteractionEvent;
+
+    public UnityEvent HoldEvent;
+
+    public class InteractionEventArgs : EventArgs
+    {
+        public bool BatteryActive;
+    }
 
     public override void Interact(GameObject player)
     {
@@ -23,12 +35,16 @@ public class BonFireDing : Interactable
             _key.SetActive(true);
         }
 
+        InteractionEvent?.Invoke(new InteractionEventArgs{ BatteryActive = _activated });
+
         script.BonFireRespawn(this.gameObject);
         _activated = !_activated;
     }
 
+    
+
     public void Hold()
     {
-        //TODO: do stuff//
+        HoldEvent?.Invoke();
     }
 }

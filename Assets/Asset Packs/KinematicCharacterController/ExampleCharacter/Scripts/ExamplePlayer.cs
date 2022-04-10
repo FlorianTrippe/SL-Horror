@@ -141,7 +141,7 @@ namespace KinematicCharacterController.Examples
 
             if (context.phase == InputActionPhase.Performed)
             {
-                Debug.Log("Hold Click");
+                CableScript.HoldInteract();
             }
             else
             {

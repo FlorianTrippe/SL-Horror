@@ -22,7 +22,7 @@ public class Battery : Interactable
 
     private Renderer _renderer;
 
-    private void Start()
+    protected virtual void Start()
     {
         _renderer = GetComponent<Renderer>();
         _slider.maxValue = _chargeDeadZone;
@@ -53,7 +53,7 @@ public class Battery : Interactable
         }
     }
 
-    public void Charge()
+    public virtual void Charge()
     {
         Debug.Log("Charge");
         _currentCharge += _charge;
@@ -65,7 +65,7 @@ public class Battery : Interactable
             BurnOut();
     }
 
-    private void BurnOut()
+    protected virtual void BurnOut()
     {
         //Lampe putt
         Destroy(this);
@@ -77,12 +77,12 @@ public class Battery : Interactable
         DoStuff();
     }
 
-    public void StopCharge()
+    public virtual void StopCharge()
     {
         obj1.SetActive(false);
     }
 
-    private void DoStuff()
+    protected virtual void DoStuff()
     {
         obj1.SetActive(true);
     }
