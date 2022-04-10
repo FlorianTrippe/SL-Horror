@@ -27,10 +27,12 @@ namespace KinematicCharacterController.Examples
         private bool _geigerStatus;
         private bool _lampStatus;
         private bool _chargerStatus;
+        private bool _isWalking;
         private float _scrollInput;
         private float _mouseLookAxisUp;
         private float _mouseLookAxisRight;
         private Vector2 _moveVector;
+        [SerializeField] private Animator _playerSteps;
 
         public bool ReadyToCharge = false;
 
@@ -51,6 +53,10 @@ namespace KinematicCharacterController.Examples
         private void Update()
         {
             HandleCharacterInput();
+            if(_moveVector.y > 0 || _moveVector.x > 0)
+                _playerSteps.SetBool("IsWalking", true);
+            else
+                _playerSteps.SetBool("IsWalking", false);
         }
 
         private void LateUpdate()
@@ -68,7 +74,20 @@ namespace KinematicCharacterController.Examples
         public void InputMove(InputAction.CallbackContext context)
         {
             _moveVector = context.ReadValue<Vector2>();
+           /*
+            if(context.phase == InputActionPhase.Performed)
+            {
+                _playerSteps.SetBool("IsWalking", true);
+            }
+            if(context.phase == InputActionPhase.Canceled)
+            {
+                _playerSteps.SetBool("IsWalking", false);
+            }
+           */
         }
+
+
+ 
         public void InputLook(InputAction.CallbackContext context)
         {
             Vector2 MouseDelta = context.ReadValue<Vector2>();

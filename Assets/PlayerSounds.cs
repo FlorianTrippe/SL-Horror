@@ -24,6 +24,10 @@ public class PlayerSounds : MonoBehaviour
     {
         //SFXManager.Instance.PlayClip(_squeak);
     }
+    public void PlayGeigerSound()
+    {
+
+    }
     public void ResetAnim()
     {
         _anim.SetBool("Charging", false);

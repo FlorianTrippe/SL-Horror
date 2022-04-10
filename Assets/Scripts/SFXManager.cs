@@ -8,6 +8,7 @@ public class SFXManager : MonoBehaviour
     public List<AudioClip> SFXList;
     public AudioSource SFX;
     public static AudioSource SFXInstance;
+    public List<AudioClip> Steps;
     // Start is called before the first frame update
     void Start()
     {

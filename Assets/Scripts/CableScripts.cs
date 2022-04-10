@@ -17,6 +17,7 @@ public class CableScripts : MonoBehaviour
     [SerializeField] private GameObject Camera;
     [SerializeField] private GameObject _zeigerVater;
     [SerializeField] private Vector3 _maxRotation;
+    
 
     [Header("Geiger Counter")]
     [SerializeField] private float _geigerChargeDrain;
@@ -218,6 +219,11 @@ public class CableScripts : MonoBehaviour
             //You are fucked
         }
     }
+    public void PlayFootstepSound()
+    {
+        SFXManager.Instance.PlayClip(SFXManager.Instance.Steps[0]);
+    }
+    
     public void EquipFlashLight()
     {
         if (_hasFlashLight)
