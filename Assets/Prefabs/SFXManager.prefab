@@ -47,6 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SFXList:
   - {fileID: 8300000, guid: f9e843d091d03b04db0ba3a3bbf9f7f3, type: 3}
+  - {fileID: 8300000, guid: 61ecca09b81ba6e42af65d637f5dba53, type: 3}
+  - {fileID: 8300000, guid: c5b589988a356d540a26d32ef11ce86e, type: 3}
+  - {fileID: 8300000, guid: 370ffae92b159ae4d92a9124ba7ad9a8, type: 3}
   SFX: {fileID: -5090047457052544656}
   Steps:
   - {fileID: 8300000, guid: cc19a8b5fd1af5d4980f343fb0a870ab, type: 3}

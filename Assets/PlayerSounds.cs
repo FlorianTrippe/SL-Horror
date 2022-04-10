@@ -22,7 +22,7 @@ public class PlayerSounds : MonoBehaviour
     }
     public void ChargeSound()
     {
-        //SFXManager.Instance.PlayClip(_squeak);
+        SFXManager.Instance.PlayClip(SFXManager.Instance.SFXList[1]);
     }
     public void PlayGeigerSound()
     {
@@ -34,11 +34,11 @@ public class PlayerSounds : MonoBehaviour
     }
     public void PlayGasMaskReload()
     {
-       // SFXManager.Instance.PlayClip(_gasMaskReload);
+        SFXManager.Instance.PlayClip(SFXManager.Instance.SFXList[2]);
     }
 
     public void PlayLightSwitchSound()
     {
-        //SFXManager.Instance.PlayClip(_lighSwitchSound);
+        SFXManager.Instance.PlayClip(_lighSwitchSound);
     }
 }
